@@ -1,0 +1,51 @@
+#! /bin/bash
+. mysql_query.sh
+
+# check user args are present
+msisdnSize=${#1}
+
+if [ $msisdnSize -eq 0 ]
+then
+  echo "please supply a msisdn"
+  exit
+fi
+
+svcSize=${#2}
+
+if [ $svcSize -eq 0 ]
+then
+  echo "please supply a service name"
+  exit
+fi
+
+LINK_SUB_SQL="
+use subscriber;
+INSERT into subscriber (MSISDN, creationTime, lastUpdateTime) VALUES(VAR_MSISDN,NOW(),NOW())
+ON DUPLICATE KEY UPDATE MSISDN=MSISDN;
+
+INSERT into service_subscribers (subscriberId,serviceId) SELECT 
+    subscriberId, serviceId
+from
+    subscriber , service
+where
+    subscriber.MSISDN = 'VAR_MSISDN' and service.serviceName = 'VAR_SVC';
+"
+
+# replace leading zeroes in msisdn, mysql auto removes them so "select into" fails
+msisdn=$1
+if [[ $msisdn =~ "^0+" ]]
+then
+  msisdn=${msisdn/${BASH_REMATCH[*]}/}
+fi
+
+# insert the msisdn into the sql template
+QUERY="${LINK_SUB_SQL//VAR_MSISDN/$msisdn}"
+
+# insert service name into sql
+QUERY="${QUERY//VAR_SVC/$2}"
+
+echo "Subscribing $msisdn to $2"
+
+mysql_query $QUERY
+
+echo "query complete"

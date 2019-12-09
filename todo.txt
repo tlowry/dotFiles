@@ -1,0 +1,37 @@
+xonsh?
+install odrive or grive2, map to  -> ~/gdrive
+
+merge 2 bashrc files
+install portable vim-plug?
+install dark vim theme to both vim & neovim
+add self to sudoers
+# add self to sudoers
+yum update
+yum install -y yum-utils curl git gnuplot python3 guake gcc-c++ make groupinstall development\
+
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+cp /usr/share/applications/guake.desktop /etc/xdg/autostart/
+sudo yum install docker-ce docker-ce-cli containerd.io
+
+curl --silent --location https://dl.yarnpkg.com/rpm/yarn.repo | sudo tee /etc/yum.repos.d/yarn.repo
+sudo rpm --import https://dl.yarnpkg.com/rpm/pubkey.gpg
+yum install yarn
+
+curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+sudo yum install -y code
+systemctl start docker
+yum install guake.noarch
+
+curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
+nvm --version
+nvm install node
+
+sudo usermod -aG docker tony
+newgrp docker
+groupadd docker
+sudo usermod -aG docker $(whoami)

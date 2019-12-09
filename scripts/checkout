@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ -z "$1" ]
+  then
+    echo "No module name supplied"
+    exit 1
+fi
+
+git cvsimport -d $CVSROOT -C $1 -r cvs -k \ $1

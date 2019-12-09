@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+gdbserver localhost:6970 --attach `pgrep $`  

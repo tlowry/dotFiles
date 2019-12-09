@@ -1,0 +1,2 @@
+export XMLLINT_INDENT=\ \ \ \ 
+xmllint -format -recover $1 > $2

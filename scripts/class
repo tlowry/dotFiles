@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+GLOBALS=""
+
+function glob() {
+ GLOBALS=$GLOBALS" -D $1=$2"
+}
+
+if [ -z "$1" ]
+  then
+    echo "No class name supplied"
+    exit 1
+fi
+
+glob FILE_NAME $1
+glob USER_NAME "tony.lowry"
+glob COMPANY_NAME "github.com/tlowry"
+glob VERSION_NO 2.2
+
+echo "GLOBALS $GLOBALS"
+export PYTHONPATH=$PYTHONPATH:$HOME/scripts/lib/cogapp-2.5.1
+python $PYLIB/cogapp-2.5.1/scripts/cog.py -o $1.h -d $GLOBALS ~/scripts/dev/cog_header_template.py
+python $PYLIB/cogapp-2.5.1/scripts/cog.py -o $1.cpp -d $GLOBALS ~/scripts/dev/cog_class_template.py
