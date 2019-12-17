@@ -1,3 +1,7 @@
 # My Dotfiles
-    a complete mess for the moment
-    no gnu stow or working installer just yet
+Simple bash,vim,neovim and collection of utility scripts
+Only tested and used on linux, mainly centos & rhel.
+
+# Install
+Run the install script to source config files and create dynamic links to others
+./install.sh

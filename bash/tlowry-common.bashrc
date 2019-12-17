@@ -30,7 +30,6 @@ export PATH=$PATH:$HOME/scripts/dev/
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
 
-
 #US kbd?
 #localectl set-x11-keymap us
 #setxkbmap us
