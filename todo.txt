@@ -1,11 +1,9 @@
 xonsh?
 install odrive or grive2, map to  -> ~/gdrive
 
-merge 2 bashrc files
 install portable vim-plug?
 install dark vim theme to both vim & neovim
-add self to sudoers
-# add self to sudoers
+#add self to sudoers
 yum update
 yum install -y yum-utils curl git gnuplot python3 guake gcc-c++ make groupinstall development\
 
@@ -35,3 +33,4 @@ sudo usermod -aG docker tony
 newgrp docker
 groupadd docker
 sudo usermod -aG docker $(whoami)
+
