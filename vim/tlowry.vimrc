@@ -94,6 +94,9 @@ cnoreabbrev W w
 set ttyfast "" Faster always better ;)
 set title "" Change terminal name to file being edited
 
+"auto indent is annoying when pasting, use a shortcut to enter paste mode"
+set pastetoggle=<F3>
+
 "" Command helper
 set wildmenu
 set wildmode=longest:list,full

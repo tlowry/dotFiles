@@ -23,6 +23,9 @@ alias fid="cvs diff -bBup "$@""
 
 export WR=~
 
+. ~/dotFiles/scripts/util.sh
+export PATH
+add_to_path PATH ~/bak end
 export PYLIB=$HOME/scripts/lib/
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/scripts/dev/
@@ -33,3 +36,13 @@ export HISTTIMEFORMAT='%F %T  '
 #US kbd?
 #localectl set-x11-keymap us
 #setxkbmap us
+
+if [[ -z "${PYTHON_PATH}" ]]; then
+    export PYTHONPATH=~/dotFiles/scripts/lib/git-cvs:~/dotFiles/scripts/lib/rcsparse
+else
+    PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/scripts/lib/rcsparse"
+fi
+
+# add git-cvs main scripts to path so git can find them
+add_to_path $HOME/dotFiles/scripts/lib/git-cvs/scripts
+export PATH
