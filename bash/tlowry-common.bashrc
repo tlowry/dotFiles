@@ -29,6 +29,8 @@ add_to_path PATH ~/bak end
 export PYLIB=$HOME/scripts/lib/
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/scripts/dev/
+export PATH=$PATH:$HOME/dotFiles/scripts
+export PATH=$PATH:$HOME/dotFiles/scripts/dev
 
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
@@ -44,5 +46,5 @@ else
 fi
 
 # add git-cvs main scripts to path so git can find them
-add_to_path $HOME/dotFiles/scripts/lib/git-cvs/scripts
+PATH=$PATH:$HOME/dotFiles/scripts/lib/git-cvs/scripts
 export PATH
