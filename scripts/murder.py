@@ -17,5 +17,3 @@ if len(sys.argv) > 1 :
   kill_by_name(proc)
 else:
   print("Please supply a binary name to kill")
-
-

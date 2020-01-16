@@ -25,7 +25,7 @@ export WR=~
 
 . ~/dotFiles/scripts/util.sh
 export PATH
-add_to_path PATH ~/bak end
+PATH=$PATH:~/bak
 export PYLIB=$HOME/scripts/lib/
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/scripts/dev/
@@ -34,10 +34,6 @@ export PATH=$PATH:$HOME/dotFiles/scripts/dev
 
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
-
-#US kbd?
-#localectl set-x11-keymap us
-#setxkbmap us
 
 if [[ -z "${PYTHON_PATH}" ]]; then
     export PYTHONPATH=~/dotFiles/scripts/lib/git-cvs:~/dotFiles/scripts/lib/rcsparse
