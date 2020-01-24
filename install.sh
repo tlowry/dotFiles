@@ -8,6 +8,7 @@
 create_and_append ". ~/dotFiles/bash/tlowry-common.bashrc" ~/.bashrc
 create_and_append ". ~/dotFiles/bash/tlowry-common.profile" ~/.bash_profile
 create_and_append ":so ~/dotFiles/vim/tlowry.vimrc" ~/.vimrc 
+mkdir -p ~/.vim/colors/
 ln -s ~/dotFiles/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
 
 #ln -s ~/dotFiles/config/nvim ~/.config/nvim
