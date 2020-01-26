@@ -115,6 +115,8 @@ if &term =~ '256color'
     set t_ut=
 endif
 
+set path+=**
+
 ""colorscheme atom
 ""colorscheme afterglow 
 colorscheme codedark

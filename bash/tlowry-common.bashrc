@@ -41,6 +41,9 @@ else
     PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/scripts/lib/rcsparse"
 fi
 
+# enable vi mode editing in bash
+set -o vi
+
 # add git-cvs main scripts to path so git can find them
 PATH=$PATH:$HOME/dotFiles/scripts/lib/git-cvs/scripts
 export PATH

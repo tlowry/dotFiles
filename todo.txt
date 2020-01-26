@@ -2,7 +2,7 @@ xonsh?
 install odrive or grive2, map to  -> ~/gdrive
 
 install portable vim-plug?
-#add self to sudoers
+add self to sudoers
 yum update
 yum install -y yum-utils curl git gnuplot python3 guake gcc-c++ make groupinstall development\
 
@@ -19,6 +19,7 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo yum install -y code
 systemctl start docker
+
 yum install guake.noarch
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
@@ -32,4 +33,3 @@ sudo usermod -aG docker tony
 newgrp docker
 groupadd docker
 sudo usermod -aG docker $(whoami)
-
