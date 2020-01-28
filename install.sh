@@ -15,3 +15,7 @@ create_and_append "set editing-mode vi" ~/.inputrc
 # create vim theming dirs and softlink
 mkdir -p ~/.vim/colors/
 ln -s ${LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+
+# add a gnome 3 app icon to open a tabbed terminal
+append_if_missing "Exec=nohup ${LOC}/scripts/tlowry_term.sh" ${LOC}/config/tlowry_term.desktop
+ln -s ${LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
