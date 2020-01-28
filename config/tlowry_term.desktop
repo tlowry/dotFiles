@@ -1,8 +1,8 @@
 [Desktop Entry]
 Type=Application
 Encoding=UTF-8
-Name=MyApplication
-Comment=My fancy new application
+Name=Terminals
+Comment=Open a tabbed terminal session
 Exec=gnome-terminal
 Icon=/usr/share/icons/Adwaita/96x96/apps/utilities-terminal-symbolic.symbolic.png
 Terminal=false
