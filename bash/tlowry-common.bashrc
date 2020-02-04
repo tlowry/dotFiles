@@ -47,3 +47,6 @@ set -o vi
 # add git-cvs main scripts to path so git can find them
 PATH=$PATH:$HOME/dotFiles/scripts/lib/git-cvs/scripts
 export PATH
+
+alias workpy='conda activate mlwork && cd ~/pywork'
+alias fin='conda deactivate'

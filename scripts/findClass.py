@@ -28,6 +28,9 @@ for root, dirs, files in os.walk(args.dir, topdown=True):
             stdout = session.stdout
             line = stdout.readline()
             while line and not finished:
+                if isinstance(line,bytes):
+                    line = line.decode(encoding='utf-8', errors='strict')
+
                 line = line.rstrip("\n")
                 if len(line) > 0:
                     print(full_name+" "+line)
