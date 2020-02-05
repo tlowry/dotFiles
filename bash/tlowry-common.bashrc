@@ -50,3 +50,6 @@ export PATH
 
 alias workpy='conda activate mlwork && cd ~/pywork'
 alias fin='conda deactivate'
+alias pip='pip3'
+
+bind -x '"\C-xf": vi $(fzf)'
