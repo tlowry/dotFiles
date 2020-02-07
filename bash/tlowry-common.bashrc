@@ -36,9 +36,9 @@ export PATH=$PATH:$HOME/dotFiles/scripts/dev
 export HISTTIMEFORMAT='%F %T  '
 
 if [[ -z "${PYTHON_PATH}" ]]; then
-    export PYTHONPATH=~/dotFiles/scripts/lib/git-cvs:~/dotFiles/scripts/lib/rcsparse
+    export PYTHONPATH=~/dotFiles/scripts/lib/git-cvs:~/dotFiles/lib
 else
-    PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/scripts/lib/rcsparse"
+    export PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/lib"
 fi
 
 # enable vi mode editing in bash
@@ -52,4 +52,4 @@ alias workpy='conda activate mlwork && cd ~/pywork'
 alias fin='conda deactivate'
 alias pip='pip3'
 
-bind -x '"\C-xf": vi $(fzf)'
+bind -x '"\C-xv": vi $(fzf)'

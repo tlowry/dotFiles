@@ -1,8 +1,11 @@
-PYTHON_DIR=/home/tony/cpython
-RUBY_DIR=/home/tony/ruby
+PYTHON_DIR=$(HOME)/cpython
+PY_LIB=python2.7
+RB_LIB=ruby-static
+
+RUBY_DIR=$(HOME)/ruby
 
 LDFLAGS=-L$(PYTHON_DIR) -L$(RUBY_DIR)
-LDLIBS=-lpython2.7 -lruby-static
+LDLIBS=-l$(PY_LIB) -l$(RB_LIB)
 CFLAGS=-I $(PYTHON_DIR) -I $(PYTHON_DIR)/Include -I $(PYTHON_DIR)/Modules/_decimal/libmpdec -I $(RUBY_DIR)/include -I $(RUBY_DIR)/.ext/include/x86_64-linux/ -DCONFIG_64 -D_GNU_SOURCE -shared -fPIC
 
 objects=rcsparse.o py-rcsparse.o rb-rcsparse.o
@@ -12,6 +15,7 @@ rcsparse.so: librcsparse_ar.a
 
 librcsparse_ar.a: $(objects)
 	ar rcs librcsparse_ar.a $(objects) $(RUBY_DIR)/libruby-static.a
+	#ar rcs librcsparse_ar.a $(objects) $(RUBY_DIR)/libruby-static.a
 
 .PHONY : clean
 clean:
