@@ -41,6 +41,12 @@ else
     export PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/lib"
 fi
 
+if [[ -z "${LD_LIBRARY_PATH}" ]]; then
+    export LD_LIBRARY_PATH=~/dotFiles/lib
+else
+    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$HOME/dotFiles/lib"
+fi
+
 # enable vi mode editing in bash
 set -o vi
 
