@@ -1,3 +1,0 @@
-COMPILE_OPTS = -DCONFIG_64 -D_GNU_SOURCE
-build: rcsparse.o
-	gcc -I ~/cpython -I ~/cpython/Include -I ~/cpython/Modules/_decimal/libmpdec/ -L~/cpython -lpython2.7 $(COMPILE_OPTS) py-rcsparse.c
