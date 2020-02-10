@@ -42,10 +42,12 @@ else
 fi
 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-    export LD_LIBRARY_PATH=~/dotFiles/lib
+    LD_LIBRARY_PATH=~/dotFiles/lib
 else
-    export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:"$HOME/dotFiles/lib"
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/dotFiles/lib
 fi
+
+export LD_LIBRARY_PATH
 
 # enable vi mode editing in bash
 set -o vi
