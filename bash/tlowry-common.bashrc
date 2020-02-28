@@ -60,4 +60,14 @@ alias workpy='conda activate mlwork && cd ~/pywork'
 alias fin='conda deactivate'
 alias pip='pip3'
 
+# fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
+fd() {
+  local dir
+  dir=$(find ${1:-.} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+bind -x '"\C-xf": fzf'
+bind -x '"\C-xc": fd'
 bind -x '"\C-xv": vi $(fzf)'
