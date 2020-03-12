@@ -70,4 +70,13 @@ fd() {
 
 bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fd'
-bind -x '"\C-xv": vi $(fzf)'
+
+#fe [FUZZY PATTERN] - Open the selected file with the default editor
+#   - Bypass fuzzy finder if there's only one match (--select-1)
+#   - Exit if there's no match (--exit-0)
+fe() (
+   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+     [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+)
+
+bind -x '"\C-xv": fe'
