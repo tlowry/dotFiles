@@ -4,5 +4,5 @@ if [ $# -lt 1 ]; then
     echo "please provide a port"
     exit 2
 else
-    lsof -n -i :$1 | grep LISTEN | awk '{ if ($1 == "java") {print "jps","| grep ",$2 } else {print "ps","grep ",$2}}' | sh
+    lsof -n -i :$1 | grep LISTEN | awk '{ if ($1 == "java") {print "jps","| grep ",$2 } else {print "ps -ef","| grep ",$2, "| grep -v 'grep' " }}' | sh
 fi
