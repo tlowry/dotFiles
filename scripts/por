@@ -1,0 +1,8 @@
+#!/bin/sh
+# this script lists the name of a process listening on a given port
+if [ $# -lt 1 ]; then
+    echo "please provide a port"
+    exit 2
+else
+    lsof -n -i :$1 | grep LISTEN | awk '{ if ($1 == "java") {print "jps","| grep ",$2 } else {print "ps","grep ",$2}}' | sh
+fi
