@@ -1,0 +1,5 @@
+#!/bin/sh
+# complement to enc function (assumes file encrypted with .gpg extension)
+
+filename=$(basename -- "$1")
+gpg -o "${filename%.*}" -d $1 

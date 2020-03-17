@@ -1,0 +1,2 @@
+#!/bin/bash
+gpg -o $1.gpg --cipher-algo AES256 --symmetric $1

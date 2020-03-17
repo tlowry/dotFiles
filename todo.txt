@@ -1,5 +1,4 @@
 xonsh?
-install odrive or grive2, map to  -> ~/gdrive
 
 install portable vim-plug?
 add self to sudoers
@@ -19,8 +18,6 @@ sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
 sudo yum install -y code
 systemctl start docker
-
-yum install guake.noarch
 
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
 export NVM_DIR="$HOME/.nvm"

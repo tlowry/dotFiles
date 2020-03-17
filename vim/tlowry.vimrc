@@ -117,6 +117,9 @@ endif
 
 set path+=**
 
+"" recognize file extensions
+au BufRead,BufNewFile *.vue setlocal filetype=html
+
 ""colorscheme atom
 ""colorscheme afterglow 
 colorscheme codedark

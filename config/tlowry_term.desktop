@@ -7,3 +7,4 @@ Exec=gnome-terminal
 Icon=/usr/share/icons/Adwaita/96x96/apps/utilities-terminal-symbolic.symbolic.png
 Terminal=false
 Exec=nohup /home/tlowry/dotFiles/scripts/tlowry_term.sh
+Exec=nohup /home/tony/dotFiles/scripts/tlowry_term.sh
