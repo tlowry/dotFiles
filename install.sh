@@ -16,10 +16,20 @@ create_and_append "\$include ${LOC}/input/inputrc" ~/.inputrc
 mkdir -p ~/.vim/colors/
 ln -s ${LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
 
-# rclone conf
-mkdir -p ~/.config/rclone/
-dec ${LOC}/.config/rclone/rclone.conf.gpg && mv rclone.conf ${LOC}/.config/rclone
-ln -s ${LOC}/.config/rclone/rclone.conf ~/.config/rclone/rclone.conf
+install_rclone() {
+    # rclone conf
+    mkdir -p ~/.config/rclone/
+    dec ${LOC}/config/rclone/rclone.conf.gpg && mv rclone.conf ${LOC}/config/rclone
+    ln -s ${LOC}/.config/rclone/rclone.conf ~/.config/rclone/rclone.conf
+}
+
+if [ "$1" == "home" ]
+    then
+        echo "home profile"
+        install_rclone
+    else
+        echo "pub profile"
+fi
 
 # add a gnome 3 app icon to open a tabbed terminal
 append_if_missing "Exec=nohup ${LOC}/scripts/tlowry_term.sh" ${LOC}/config/tlowry_term.desktop
