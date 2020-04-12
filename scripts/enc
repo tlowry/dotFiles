@@ -1,2 +1,14 @@
 #!/bin/bash
-gpg -o $1.gpg --cipher-algo AES256 --symmetric $1
+[ -z $1 ] && echo "use: enc <file_to_encrypt>" && exit 1
+
+if [ -d $1 ]; then
+  file=${1%/}
+  file="$1.tgz"
+  tar -czf $file $1
+else
+  file=$1.gpg
+fi
+
+file_out=$file.gpg
+
+gpg -o $file_out --cipher-algo AES256 --symmetric $file && echo $file_out

@@ -1,0 +1,5 @@
+#!/bin/sh
+[ -z $1 ] && echo "use: tt <file to compress>" && exit 1
+file=$1.tar.gz
+tar -czf $file $1
+echo $file

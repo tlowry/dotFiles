@@ -1,0 +1,10 @@
+[Unit]
+Description = NTFS disk mount
+[Mount]
+What = /dev/sdb1
+Where = /run/media/stor
+Type =ntfs
+Options = rw,nodev,nosuid,windows_names,uid=1000,gid=1001,uhelper
+
+[Install]
+WantedBy = multi-user.target
