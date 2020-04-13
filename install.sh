@@ -1,36 +1,47 @@
-. scripts/util.sh
-
-#curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs \
-#    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+#!/bin/sh
 
 # find the current location of this script
-LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-# Create files if absent then append linking line if absent
-create_and_append ". ${LOC}/bash/tlowry-common.bashrc" ~/.bashrc
-create_and_append ". ${LOC}/bash/tlowry-common.profile" ~/.bash_profile
-create_and_append ":so ${LOC}/vim/tlowry.vimrc" ~/.vimrc 
-create_and_append "\$include ${LOC}/input/inputrc" ~/.inputrc
+. $DOT_LOC/scripts/util.sh
 
-# create vim theming dirs and softlink
-mkdir -p ~/.vim/colors/
-ln -s ${LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+# common install for all platforms
+install_base () {
+    
+    # Create files if absent then append linking line if absent
+    create_and_append ". ${DOT_LOC}/bash/tlowry-common.bashrc" ~/.bashrc
+    create_and_append ". ${DOT_LOC}/bash/tlowry-common.profile" ~/.bash_profile
+    create_and_append ":so ${DOT_LOC}/vim/tlowry.vimrc" ~/.vimrc 
+    create_and_append "\$include ${DOT_LOC}/input/inputrc" ~/.inputrc
 
-install_rclone() {
-    # rclone conf
-    mkdir -p ~/.config/rclone/
-    dec ${LOC}/config/rclone/rclone.conf.gpg && mv rclone.conf ${LOC}/config/rclone
-    ln -s ${LOC}/.config/rclone/rclone.conf ~/.config/rclone/rclone.conf
+    # create vim theming dirs and softlink
+    mkdir -p ~/.vim/colors/
+    ln -s ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+}
+
+install_private() {
+    dec private.tgz.gpg && ut private.tgz && rm -rf private.tgz && private/private
+}
+
+# arch/manjaro specific
+install_arch() {
+    pacman -S python2 intltool strongswan networkmanager-strongswan brave mpv xl2tpd rclone tigervnc
+    inst_sysd config/run-media-stor.mount
+}
+
+# rhel/centos specific
+install_rhel() {
+    # add a gnome 3 app icon to open a tabbed terminal
+    append_if_missing "Exec=nohup ${DOT_LOC}/scripts/tlowry_term.sh" ${DOT_LOC}/config/tlowry_term.desktop
+    ln -s ${DOT_LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
 }
 
 if [ "$1" == "home" ]
     then
         echo "home profile"
-        install_rclone
+        install_private
     else
         echo "pub profile"
 fi
 
-# add a gnome 3 app icon to open a tabbed terminal
-append_if_missing "Exec=nohup ${LOC}/scripts/tlowry_term.sh" ${LOC}/config/tlowry_term.desktop
-ln -s ${LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
+install_base

@@ -1,5 +1,6 @@
 #!/bin/sh
 # complement to enc function (assumes file encrypted with .gpg extension)
 
+[ -z $1 ] && echo "use: dec <encrypted file>" && exit 1
 filename=$(basename -- "$1")
 gpg -o "${filename%.*}" -d $1 
