@@ -26,7 +26,7 @@ export WR=~
 . ~/dotFiles/scripts/util.sh
 export PATH
 PATH=$PATH:~/bak
-export PYLIB=$HOME/scripts/lib/
+export PYLIB=$HOME/dotFiles/scripts/lib/
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/scripts/dev/
 export PATH=$PATH:$HOME/dotFiles/scripts
