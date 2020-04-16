@@ -1,7 +1,6 @@
 xonsh?
 
 install portable vim-plug?
-add self to sudoers
 yum update
 yum install -y yum-utils curl git gnuplot python3 guake gcc-c++ make groupinstall development\
 
@@ -19,13 +18,6 @@ sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.micros
 sudo yum install -y code
 systemctl start docker
 
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.11/install.sh | bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion'
-nvm --version
-nvm install node
-
 sudo usermod -aG docker tony
 newgrp docker
 groupadd docker
@@ -40,3 +32,8 @@ sudo apt-get install strongswan-plugin-openssl
 
 Phase1 Algorithms : 3des-sha1-modp1024
 Phase2 Algorithms : 3des-sha1
+
+
+!!!
+i3 config
+submodule for cog?

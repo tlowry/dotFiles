@@ -1,5 +1,5 @@
 # My Dotfiles
-Simple bash,vim,neovim and collection of utility scripts
+bash + vim and collection of utility scripts
 Only tested and used on linux, mainly centos & rhel.
 
 # Install

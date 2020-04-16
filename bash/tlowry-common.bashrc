@@ -8,6 +8,11 @@ alias vu="vim"
 alias vo="vim"
 alias vi="vim"
 
+alias g="git"
+alias gd="git diff"
+alias ga="git add"
+alias gis="git status"
+
 # useful CVS
 revert () { cvs update -C $1; }
 export -f revert
@@ -18,47 +23,34 @@ export -f modded
 
 alias diff="diff -bBup"
 alias fid="cvs diff -bBup "$@""
-#alias class="python ~/dotFiles/scripts/make_class.py "$1""
-#alias test="python ~/dotFiles/make_class.py $1 ~/scripts/templates/test.h ~/scripts/templates/test.cpp"
-
-export WR=~
-
-. ~/dotFiles/scripts/util.sh
-export PATH
-PATH=$PATH:~/bak
-export PYLIB=$HOME/dotFiles/scripts/lib/
-export PATH=$PATH:$HOME/scripts
-export PATH=$PATH:$HOME/scripts/dev/
-export PATH=$PATH:$HOME/dotFiles/scripts
-export PATH=$PATH:$HOME/dotFiles/scripts/dev
 
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
 
-if [[ -z "${PYTHON_PATH}" ]]; then
-    export PYTHONPATH=~/dotFiles/scripts/lib/git-cvs:~/dotFiles/lib
-else
-    export PYTHONPATH=$PYTHONPATH:"$HOME/dotFiles/scripts/lib/git-cvs:$HOME/dotFiles/lib"
-fi
+# enable vi mode editing in bash
+set -o vi
 
+# add scripts + dependency path to PATH
+[ -z $PATH ] && export PATH
+export PATH=$PATH:$DOT_LOC/scripts
+
+
+# add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-    LD_LIBRARY_PATH=~/dotFiles/lib
+    LD_LIBRARY_PATH=$DOT_LOC/scripts/lib
 else
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$HOME/dotFiles/lib
+    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DOT_LOC/lib
 fi
 
 export LD_LIBRARY_PATH
 
-# enable vi mode editing in bash
-set -o vi
-
-# add git-cvs main scripts to path so git can find them
-PATH=$PATH:$HOME/dotFiles/scripts/lib/git-cvs/scripts
-export PATH
-
-alias workpy='conda activate mlwork && cd ~/pywork'
-alias fin='conda deactivate'
-alias pip='pip3'
+loc_py_path="$DOT_LOC/scripts/lib/cogapp-2.5.1"
+# add portable python libs + dependent libs
+if [[ -z "${PYTHON_PATH}" ]]; then
+    export PYTHONPATH=$loc_py_path
+else
+    export PYTHONPATH=$PYTHONPATH:$loc_py_path
+fi
 
 # fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
 fd() {
@@ -68,9 +60,6 @@ fd() {
   cd "$dir"
 }
 
-bind -x '"\C-xf": fzf'
-bind -x '"\C-xc": fd'
-
 #fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
@@ -79,4 +68,11 @@ fe() (
      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
+
+#export XDG_CONFIG_HOME=$DOT_LOC/.config
+
+# key bindings
+bind -x '"\C-xf": fzf'
+bind -x '"\C-xc": fd'
 bind -x '"\C-xv": fe'
+bind -x '"\C-xr": . ~/.bashrc && echo "reloaded bashrc"'
