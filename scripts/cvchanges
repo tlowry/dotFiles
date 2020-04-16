@@ -1,0 +1,14 @@
+#!/bin/sh
+
+function xp () 
+{
+    file=$( cvs -qn update | eval "fzf ${FZF_DEFAULT_OPTS} -m --header='[status:file]'" | awk '{print $2}')
+    if [ "$file" != "" ]
+    then
+        echo $file 
+        #echo $pid | xargs kill -${1:-9}
+        xp
+    fi
+}
+
+xp
