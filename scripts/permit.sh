@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 if [ $# -lt 1 ]
   then
-    echo "Usage: permit.sh <optional switches> <reference permissions file> <target files>"
-    exit 1
+    echo "Usage: permit.sh <optional switches> <reference permissions file> <target files>";exit 1
 fi
 
 OPTS=""

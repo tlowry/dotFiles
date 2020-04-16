@@ -24,11 +24,6 @@ export -f modded
 alias diff="diff -bBup"
 alias fid="cvs diff -bBup "$@""
 
-#getkbd () { echo `setxkbmap -query | grep layout | awk '{print $2}'`; }
-#export -f getkbd
-
-#togglekbd () { [ $(getkbd) == "us" ] && `setxkbmap ru` || `setxkbmap us` ; }
-
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
 
