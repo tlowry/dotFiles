@@ -32,3 +32,8 @@ sudo apt-get install strongswan-plugin-openssl
 
 Phase1 Algorithms : 3des-sha1-modp1024
 Phase2 Algorithms : 3des-sha1
+
+
+!!!
+i3 config
+submodule for cog?

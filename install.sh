@@ -2,9 +2,10 @@
 
 # find the current location of this script
 DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
 
 . $DOT_LOC/scripts/util.sh
+append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
+
 
 # common install for all platforms
 install_base () {
@@ -17,6 +18,7 @@ install_base () {
     # create vim theming dirs and softlink
     mkdir -p ~/.vim/colors/
     ln -s ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim 2> /dev/null
+    ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
 
 
