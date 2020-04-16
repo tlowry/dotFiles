@@ -1,25 +1,27 @@
-#!/bin/sh
+#!/bin/bash
 
 # find the current location of this script
 DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
 
 . $DOT_LOC/scripts/util.sh
 
 # common install for all platforms
 install_base () {
-    
+    echo "install base"    
     # Create files if absent then append linking line if absent
     create_and_append ". ${DOT_LOC}/bash/tlowry-common.bashrc" ~/.bashrc
-    create_and_append ". ${DOT_LOC}/bash/tlowry-common.profile" ~/.bash_profile
     create_and_append ":so ${DOT_LOC}/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include ${DOT_LOC}/input/inputrc" ~/.inputrc
 
     # create vim theming dirs and softlink
     mkdir -p ~/.vim/colors/
-    ln -s ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+    ln -s ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim 2> /dev/null
 }
 
+
 install_private() {
+    echo "install private"    
     dec private.tgz.gpg && ut private.tgz && rm -rf private.tgz && private/private
 }
 
@@ -36,12 +38,15 @@ install_rhel() {
     ln -s ${DOT_LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
 }
 
+
+install_base
+
+[ -f /etc/redhat/release ] && install_rhel
+
 if [ "$1" == "home" ]
     then
-        echo "home profile"
         install_private
     else
         echo "pub profile"
 fi
 
-install_base
