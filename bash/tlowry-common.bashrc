@@ -23,6 +23,7 @@ export -f modded
 
 alias diff="diff -bBup"
 alias fid="cvs diff -bBup "$@""
+alias rg="rg --hidden"
 
 #useful history datestamps
 export HISTTIMEFORMAT='%F %T  '
@@ -68,7 +69,8 @@ fe() (
      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
-
+export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
+export EDITOR='vim'
 #export XDG_CONFIG_HOME=$DOT_LOC/.config
 
 # key bindings
