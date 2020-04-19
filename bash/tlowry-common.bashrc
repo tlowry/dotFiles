@@ -13,6 +13,8 @@ alias gd="git diff"
 alias ga="git add"
 alias gis="git status"
 
+alias ll="ls -a --color=auto"
+
 # useful CVS
 revert () { cvs update -C $1; }
 export -f revert

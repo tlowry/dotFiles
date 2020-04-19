@@ -1,4 +1,4 @@
 #!/bin/bash
 # pull & push files from google drive
-rclone sync gdrive:/ ~/gdrive
 rclone sync ~/gdrive gdrive:/
+rclone sync gdrive:/ ~/gdrive
