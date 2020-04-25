@@ -18,19 +18,24 @@ install_base () {
     # create vim theming dirs and softlink
     mkdir -p ~/.vim/colors/
     ln -s ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim 2> /dev/null
+    ln -s ${DOT_LOC}/config/xinitrc ~/.xinitrc 2> /dev/null
+    ln -s ${DOT_LOC}/config/i3/config ~/.config/i3/config 2> /dev/null
+    ln -s ${DOT_LOC}/config/bash_profile ~/.bash_profile 2> /dev/null
+    
+    # clean way to add scripts to path (availiable even where $PATH is not)
     [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
 
-
 install_private() {
     echo "install private"    
-    dec private.tgz.gpg && ut private.tgz && rm -rf private.tgz && private/private
+    dec private.tgz.gpg && private/private
 }
 
 # arch/manjaro specific
 install_arch() {
-    pacman -S python2 intltool strongswan networkmanager-strongswan brave mpv xl2tpd rclone tigervnc
-    inst_sysd config/run-media-stor.mount
+    echo "arch install"
+    sudo pacman -S python2 intltool strongswan networkmanager-strongswan mpv xl2tpd rclone
+    sudo inst_sysd config/run-media-stor.mount
 }
 
 # rhel/centos specific
@@ -45,10 +50,12 @@ install_base
 
 [ -f /etc/redhat/release ] && install_rhel
 
+distro=`uname -a | cut -d " " -f 2`
+[ $distro == "archlinux" ] && install_arch
+
 if [ "$1" == "home" ]
     then
         install_private
     else
         echo "pub profile"
 fi
-
