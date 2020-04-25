@@ -75,6 +75,10 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
 export EDITOR='vim'
 #export XDG_CONFIG_HOME=$DOT_LOC/.config
 
+export stor="/run/media/stor"
+
+export XDG_CONFIG_HOME=~/.config
+
 # key bindings
 bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fd'
