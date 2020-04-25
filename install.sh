@@ -24,6 +24,9 @@ install_base () {
     
     # clean way to add scripts to path (availiable even where $PATH is not)
     [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
+
+    [ -z $XDG_CONFIG_HOME ] || XDG_CONFIG_HOME=~/.config
+    mkdir -p $XDG_CONFIG_HOME/autostart 2> /dev/null
 }
 
 install_private() {
@@ -34,7 +37,6 @@ install_private() {
 # arch/manjaro specific
 install_arch() {
     echo "arch install"
-    sudo pacman -S python2 intltool strongswan networkmanager-strongswan mpv xl2tpd rclone
     sudo inst_sysd config/run-media-stor.mount
 }
 
@@ -50,8 +52,7 @@ install_base
 
 [ -f /etc/redhat/release ] && install_rhel
 
-distro=`uname -a | cut -d " " -f 2`
-[ $distro == "archlinux" ] && install_arch
+distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
 
 if [ "$1" == "home" ]
     then
