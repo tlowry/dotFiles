@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# not entirely sure what the purpose of this was?
+# not entirely sure what the purpose of this was? (probably patching cvs branches)
 import sys
 import os
 import re

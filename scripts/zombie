@@ -23,6 +23,8 @@ lastparentid=0
 # remove old gdb command file
 rm -f /tmp/zombie_slayer.txt
 
+command -v gdb && CMD=gdb || CMD=lldb
+
 # create the gdb command file
 echo "Creating command file..."
 ps -e -o ppid,pid,stat,command | grep Z | sort | while read LINE; do
@@ -55,5 +57,5 @@ fi
 
 # Slay the zombies with gdb and the created command file
 echo "Slaying zombie processes..."
-gdb -batch -x /tmp/zombie_slayer.txt
+$CMD -batch -x /tmp/zombie_slayer.txt 2> /dev/null
 echo "Script complete."

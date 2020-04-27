@@ -1,7 +1,6 @@
 #!/bin/bash
 [ -z $1 ] && echo "use: enc <file_to_encrypt>" && exit 1
 
-
 cleanup () {
     [ -f $clean_file ] && rm -rf $clean_file
 }

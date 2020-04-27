@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
-
+# create a c++ .h & .cpp class given a class name
 GLOBALS=""
-
 function glob() {
  GLOBALS=$GLOBALS" -D $1=$2"
 }
 
-if [ -z "$1" ]
-  then
-    echo "No class name supplied"
-    exit 1
-fi
+[ -z "$1" ] && echo "No class name supplied" &&  exit 1
 
 glob FILE_NAME $1
 glob USER_NAME "tony.lowry"

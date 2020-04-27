@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# script to recursively add directory + all subdirectories to CVS module
 import subprocess, re , signal, os, sys
 
 def add_dirs(dir_name):
