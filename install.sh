@@ -9,6 +9,7 @@ append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
 make_link () {
     dest_dir=`dirname $2` 2> /dev/null
     [ -f $dest_dir ] || mkdir -p $dest_dir
+    [ -L $2 ] && unlink $2
     [ -L $2 ] || ln -s $1 $2
 }
 
@@ -16,17 +17,16 @@ make_link () {
 install_base () {
     echo "install base"
     # Create files if absent then append linking line if absent
-    create_and_append ". ${DOT_LOC}/bash/tlowry-common.bashrc" ~/.bashrc
-    create_and_append ":so ${DOT_LOC}/vim/tlowry.vimrc" ~/.vimrc 
-    create_and_append "\$include ${DOT_LOC}/input/inputrc" ~/.inputrc
+    create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
+    create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
+    create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     
     # soft link config to standard location
-    make_link ${DOT_LOC}/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+    make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
     make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/i3/config $XDG_CONFIG_HOME/i3/config
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
-    make_link ${DOT_LOC}/config/sxhkd/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
     make_link ${DOT_LOC}/config/mpv/mpv.conf $XDG_CONFIG_HOME/mpv/mpv.conf
     make_link ${DOT_LOC}/config/autostart $XDG_CONFIG_HOME/autostart
     # clean way to add scripts to path (available even where $PATH is not)
