@@ -13,7 +13,9 @@ alias gd="git diff"
 alias ga="git add"
 alias gis="git status"
 
-alias ll="ls -a --color=auto"
+alias ls="ls -a --color=auto"
+alias ll="ls -la --color=auto"
+alias la="ls -lart --color=auto"
 
 # useful CVS
 revert () { cvs update -C $1; }
@@ -78,6 +80,7 @@ export EDITOR='vim'
 export stor="/run/media/stor"
 
 export XDG_CONFIG_HOME=~/.config
+[ -z $TERMINAL ] && TERMINAL="alacritty"
 
 # key bindings
 bind -x '"\C-xf": fzf'

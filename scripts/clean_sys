@@ -1,0 +1,4 @@
+#!/bin/sh
+pacman -Sc --noconfirm
+pacman -Rns $(pacman -Qtdq) --noconfirm 2> /dev/null
+journalctl --vacuum-time=10d --vacuum-size=2G
