@@ -9,8 +9,8 @@ alias vo="vim"
 alias vi="vim"
 
 alias g="git"
-alias gd="git diff"
-alias ga="git add"
+alias gif="git diff"
+alias gad="git add"
 alias gis="git status"
 
 alias ls="ls -a --color=auto"
@@ -38,7 +38,6 @@ set -o vi
 # add scripts + dependency path to PATH
 [ -z $PATH ] && export PATH
 export PATH=$PATH:$DOT_LOC/scripts
-
 
 # add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
@@ -73,14 +72,13 @@ fe() (
      [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
 )
 
+# exports
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
-export EDITOR='vim'
-#export XDG_CONFIG_HOME=$DOT_LOC/.config
-
 export stor="/run/media/stor"
-
 export XDG_CONFIG_HOME=~/.config
-[ -z $TERMINAL ] && TERMINAL="alacritty"
+export EDITOR="vim"
+export BROWSER="chromium"
+[ -z $TERMINAL ] && export TERMINAL="alacritty"
 
 # key bindings
 bind -x '"\C-xf": fzf'

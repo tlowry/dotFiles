@@ -94,8 +94,12 @@ cnoreabbrev W w
 set ttyfast "" Faster always better ;)
 set title "" Change terminal name to file being edited
 
-"auto indent is annoying when pasting, use a shortcut to enter paste mode"
-set pastetoggle=<F3>
+"Disable line numbers + auto indent for copypaste"
+function CopyPasteMode()
+    :set invnumber
+    :set pastetoggle
+endfunction
+noremap <F3> :call CopyPasteMode()<CR>
 
 "" Command helper
 set wildmenu
