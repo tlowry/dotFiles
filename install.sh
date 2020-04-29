@@ -56,8 +56,9 @@ install_rhel() {
 [ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=~/.config 
 install_base
 
-[ -f /etc/redhat/release ] && install_rhel
+[ -f /etc/redhat-release ] && install_rhel
 
 distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
+echo $distro
 
 [ "$1" == "home" ] && install_private
