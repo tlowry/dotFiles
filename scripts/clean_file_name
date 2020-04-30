@@ -1,5 +1,12 @@
 #!/bin/sh
 [ -z "$1" ] && echo "use: clean_file_name <file_name>" && exit 1
-file_name=`echo $1 | sed 's/ /_/g;s/.*/\L&/'`
+
+e_space='s/ /_/g'
+e_plus='s/!//g;s/&/+/g'
+e_spec='s/[!|(|)|;]//g'
+e_brace='s/\[\|\]//g'
+e_uncap='s/.*/\L&/'
+
+file_name=`echo $1 | sed "$e_space;$e_plus;$e_spec;$e_brace;$e_uncap"`
 
 [ -f "$file_name" ] || [ -d "$file_name" ] && echo "skip "$1" dest exists" ||  mv "$1" "$file_name"
