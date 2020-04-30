@@ -1,0 +1,8 @@
+#!/bin/sh
+# TODO: split gdrive path so it is always relative
+[ -z $1 ] || [ -z $2 ] && echo "use: gmv <gdrive file to move>" && exit 1
+
+[ -f $1 ] || [ -d $1 ] || echo $1" doesn't exist" || exit 1
+
+echo here
+rclone move gdrive:/$1 gdrive:/$2 && mv $1 $2

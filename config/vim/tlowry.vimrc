@@ -96,8 +96,8 @@ set title "" Change terminal name to file being edited
 
 "Disable line numbers + auto indent for copypaste"
 function CopyPasteMode()
+    :set invpaste
     :set invnumber
-    :set pastetoggle
 endfunction
 noremap <F3> :call CopyPasteMode()<CR>
 

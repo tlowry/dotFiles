@@ -1,0 +1,7 @@
+#!/bin/sh
+# TODO: split gdrive path so it is always relative
+[ -z $1 ] && echo "use: gcpy <gdrive file> <gdrive dest>" && exit 1
+
+[ -f $1 ] || [ -d $1 ] && echo "file doesn't exist" && exit 1
+
+rclone cp gdrive:/$1 gdrive:/$2
