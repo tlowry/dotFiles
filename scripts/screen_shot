@@ -1,0 +1,4 @@
+#!/bin/sh
+timestamp=`date +%s`
+#import ~/screen-$timestamp.png 
+magick import -window root ~/screen-$timestamp.png

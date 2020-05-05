@@ -1,0 +1,12 @@
+# DM agnostic keybindings
+# if another app maps these first it will handle them
+# instead
+
+ctrl + alt + Delete
+    i3lock
+
+ctrl + p
+    exec screen_shot
+
+super + shift + w
+	$BROWSER

@@ -193,6 +193,5 @@ bar {
     font pango:mono 10
 }
 
-bindsym $mod+Alt_L exec i3lock
 exec fix_mon
-exec chromium
+exec $BROWSER

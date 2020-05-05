@@ -16,7 +16,7 @@ make_link () {
 # common install for all platforms
 install_base () {
     echo "install base"
-    # Create files if absent then append linking line if absent
+    # Don't overwrite existing config (create if missing and source)
     create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
     create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
@@ -29,6 +29,8 @@ install_base () {
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
     make_link ${DOT_LOC}/config/mpv/mpv.conf $XDG_CONFIG_HOME/mpv/mpv.conf
     make_link ${DOT_LOC}/config/autostart $XDG_CONFIG_HOME/autostart
+    make_link ${DOT_LOC}/config/wget/wgetrc $XDG_CONFIG_HOME/wget/wgetrc
+    make_link ${DOT_LOC}/config/sxhkd/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
     # clean way to add scripts to path (available even where $PATH is not)
     [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
