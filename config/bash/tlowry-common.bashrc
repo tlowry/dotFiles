@@ -12,6 +12,7 @@ alias g="git"
 alias gif="git diff"
 alias gad="git add"
 alias gis="git status"
+alias gek="git checkout"
 
 alias ls="ls -a --color=auto"
 alias ll="ls -la --color=auto"
