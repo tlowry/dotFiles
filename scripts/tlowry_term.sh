@@ -1,8 +1,8 @@
 gnome-terminal \
-   --window --working-directory="/home/tlowry"\
-   --tab --working-directory="/home/tlowry" \
-   --tab --working-directory="/home/tlowry" \
-   --tab --working-directory="/home/tlowry" \
-   --tab --working-directory="/home/tlowry" \
+   --window --working-directory="$HOME"\
+   --tab --working-directory="$HOME" \
+   --tab --working-directory="$HOME" \
+   --tab --working-directory="$HOME" \
+   --tab --working-directory="$HOME" \
    --tab --working-directory="/root" -e "su"  &
 exit
