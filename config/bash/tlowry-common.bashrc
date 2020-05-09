@@ -19,6 +19,17 @@ alias ll="ls -la --color=auto"
 alias la="ls -lart --color=auto"
 
 alias eb="ebook-viewer --detach"
+alias vncserver="vncserver -noreset -geometry 1600x900"
+
+# Small less enhancements
+export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
+export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
+export LESS_TERMCAP_md=$'\E[1;36m'     # begin blink
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;44;33m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # useful CVS
 revert () { cvs update -C $1; }
@@ -84,8 +95,6 @@ export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
 export INPUTRC="${XDG_CONFIG_HOME:-$HOME/.config}/inputrc"
-export ALSA_CONFIG_PATH="$XDG_CONFIG_HOME/alsa/asoundrc"
-export GNUPGHOME="$XDG_DATA_HOME/gnupg"
 export WINEPREFIX="${XDG_DATA_HOME:-$HOME/.local/share}/wineprefixes/default"
 export TMUX_TMPDIR="$XDG_RUNTIME_DIR"
 export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
@@ -96,13 +105,14 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
 export stor="/run/media/stor"
 export EDITOR="vim"
 [ -z $BROWSER ] && export BROWSER="icecat"
-
-
-[ ! -d "$GNUPGHOME" ] && mkdir -p "$GNUPGHOME" && chmod 700 "$GNUPGHOME"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
+
+shell_reload(){
+    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
+}
 
 # key bindings
 bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fd'
 bind -x '"\C-xv": fe'
-bind -x '"\C-xr": . ~/.bashrc && echo "reloaded bashrc"'
+bind -x '"\C-xr": shell_reload'

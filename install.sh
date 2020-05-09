@@ -23,7 +23,6 @@ install_base () {
     
     # soft link config to standard location
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
-    make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
     make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/i3/config $XDG_CONFIG_HOME/i3/config
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
@@ -44,6 +43,7 @@ install_private() {
 install_arch() {
     echo "install arch"
     systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
+    make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
 }
 
 # rhel/centos specific
