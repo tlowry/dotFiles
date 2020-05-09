@@ -27,7 +27,6 @@ install_base () {
     make_link ${DOT_LOC}/config/i3/config $XDG_CONFIG_HOME/i3/config
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
     make_link ${DOT_LOC}/config/mpv/mpv.conf $XDG_CONFIG_HOME/mpv/mpv.conf
-    make_link ${DOT_LOC}/config/autostart $XDG_CONFIG_HOME/autostart
     make_link ${DOT_LOC}/config/wget/wgetrc $XDG_CONFIG_HOME/wget/wgetrc
     make_link ${DOT_LOC}/config/sxhkd/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
     # clean way to add scripts to path (available even where $PATH is not)
@@ -50,7 +49,6 @@ install_arch() {
 install_rhel() {
     echo "install rhel"
     # add a gnome 3 app icon to open a tabbed terminal
-    append_if_missing "Exec=nohup ${DOT_LOC}/scripts/tlowry_term.sh" ${DOT_LOC}/config/tlowry_term.desktop
     ln -s ${DOT_LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
 }
 
