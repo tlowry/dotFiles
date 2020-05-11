@@ -112,7 +112,6 @@ export EDITOR="vim"
 
 [ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
-[ -z $PAGER ] && export PAGER="zathura"
 
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"

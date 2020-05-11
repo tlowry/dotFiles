@@ -8,7 +8,7 @@ date_time () {
 inet () {
     def_if=`getif`
     status=`ip link show $def_if | egrep -o "<(.+)>"`
-    grep -q "DOWN" "$status" || echo "%{F$KO_COL}$def_if" && echo "%{F$OK_COL}$def_if"
+    grep -q "UP" "$status" && echo "%{F$KO_COL}DOWN" || echo "%{F$OK_COL}$def_if"
 }
 
 cpu () {
@@ -29,7 +29,6 @@ OK_COL="#73d216"
 KO_COL="#cc0000"
 
 while true; do
-    echo "%{F$FG_COL}%{B$BG_COL}%{U$U_COL}%{l}"$(desk) $(cpu)"%{c}"$(date_time)"%{r}"$(inet)"%{F-}%{B-}"
-
+    echo -e "%{F$FG_COL}%{B$BG_COL}%{U$U_COL}%{l}"$(desk) $(cpu)"%{c}"$(date_time)"%{r}"$(inet)"%{F-}%{B-}"
     sleep 1
 done
