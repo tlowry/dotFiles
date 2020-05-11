@@ -110,6 +110,7 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
 export stor="/run/media/stor"
 export EDITOR="vim"
 
+alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 

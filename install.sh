@@ -29,6 +29,7 @@ install_base () {
     make_link ${DOT_LOC}/config/mpv/mpv.conf $XDG_CONFIG_HOME/mpv/mpv.conf
     make_link ${DOT_LOC}/config/wget/wgetrc $XDG_CONFIG_HOME/wget/wgetrc
     make_link ${DOT_LOC}/config/sxhkd/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
+    make_link ${DOT_LOC}/config/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
     # clean way to add scripts to path (available even where $PATH is not)
     [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
