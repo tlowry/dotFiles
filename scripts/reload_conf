@@ -1,0 +1,5 @@
+#!/bin/sh
+killall sxhkd lemonbar
+pkill -x sxhkd; sxhkd&
+pkill -x run_bar; run_bar&
+bspc wm -r

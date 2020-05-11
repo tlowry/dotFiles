@@ -1,3 +1,4 @@
 fix_mon &
 sxhkd &
+run_bar &
 exec bspwm

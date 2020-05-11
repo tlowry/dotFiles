@@ -1,0 +1,5 @@
+#!/bin/sh
+feed_bar | lemonbar \
+-f -*-Noto-* \
+-g x28 \
+-B "#2e3436"

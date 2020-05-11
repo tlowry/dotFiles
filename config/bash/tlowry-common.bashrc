@@ -110,8 +110,9 @@ export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
 export stor="/run/media/stor"
 export EDITOR="vim"
 
-[ -z $BROWSER ] && export BROWSER="icecat"
+[ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
+[ -z $PAGER ] && export PAGER="zathura"
 
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"

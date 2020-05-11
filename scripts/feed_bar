@@ -1,0 +1,35 @@
+#!/usr/bin/bash
+
+date_time () {
+        DATETIME=$(date "+%Y/%m/%e %R")
+        echo -n "$DATETIME"
+}
+
+inet () {
+    def_if=`getif`
+    status=`ip link show $def_if | egrep -o "<(.+)>"`
+    grep -q "DOWN" "$status" || echo "%{F$KO_COL}$def_if" && echo "%{F$OK_COL}$def_if"
+}
+
+cpu () {
+    pc=`top -bn1 | grep "%Cpu(s): "| egrep -o '[0-9]+\.[0-9]+ us' | cut -d " " -f 1`
+    echo $pc%
+}
+
+# Bspwm desktop
+desk () {
+    echo `bspc query -D -d --names` | cut -c -4
+}
+
+# Colours
+BG_COL="#2e3436" # should match -B arg from cmd
+FG_COL="#eeeeec"
+U_COL="#fce94f"
+OK_COL="#73d216"
+KO_COL="#cc0000"
+
+while true; do
+    echo "%{F$FG_COL}%{B$BG_COL}%{U$U_COL}%{l}"$(desk) $(cpu)"%{c}"$(date_time)"%{r}"$(inet)"%{F-}%{B-}"
+
+    sleep 1
+done

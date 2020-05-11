@@ -4,4 +4,4 @@
 path=`dirname $1`
 file=`basename $1`
 
-[ -z $path ] || mkdir -p $path && touch $path/$file
+[ -z $path ] || mkdir -p $path && touch "$path/$file"

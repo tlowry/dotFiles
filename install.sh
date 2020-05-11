@@ -43,6 +43,18 @@ install_arch() {
     echo "install arch"
     systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
+    make_link ${DOT_LOC}/config/bspwm/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
+    make_link ${DOT_LOC}/local/share/applications $XDG_DATA_HOME/applications
+
+	xdg-mime default sxiv.desktop image/jpeg
+	xdg-mime default sxiv.desktop image/png
+	xdg-mime default sxiv.desktop image/gif	# TODO: sxiv -a for anim
+	xdg-mime default sxiv.desktop image/png
+	xdg-mime default zathura.desktop application/epub+zip
+	xdg-mime default zathura.desktop application/pdf
+
+	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
+	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 
 }
 
 # rhel/centos specific
@@ -52,7 +64,6 @@ install_rhel() {
     ln -s ${DOT_LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
 }
 
-## Execution begins here
 [ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=~/.config 
 install_base
 

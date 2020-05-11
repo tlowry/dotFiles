@@ -1,7 +1,10 @@
 #!/bin/sh
-# TODO: split gdrive path so it is always relative
 [ -z "$1" ] && echo "use: grm <gdrive file to rm>" && exit 1
 
-[ -f "$1" ] && cmd=purge || [ -d "$1" ] && cmd=delete
+[ -f "$1" ] && cmd=purge
+[ -d "$1" ] && cmd=purge
 [ -z $cmd ] && echo "file doesn't exist" && exit 1
-rclone $cmd gdrive:/"$1" && rm -rf "$1"
+
+dest=`gpath "$1"`
+echo "rclone $cmd gdrive:"$dest""
+rclone $cmd gdrive:"$dest" 

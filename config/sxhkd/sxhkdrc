@@ -1,4 +1,3 @@
-
 #
 # bspwm hotkeys
 #
@@ -33,11 +32,10 @@ super + {Left,Down,Up,Right}
 
 # set the window state
 super + {t,shift + t,s}
-	bspc node -t {tiled,pseudo_tiled,floating}
+	bspc node -t {tiled,pseudo_tiled}
 
-# alternate between the tiled and monocle layout
-super + {_,shift + }f
-    bspc {desktop -l next,node -t ~fullscreen}
+super + f
+    bspc node -t ~fullscreen
 
 # set the node flags
 super + ctrl + {m,x,y,z}
@@ -131,13 +129,39 @@ super + d
 
 # make sxhkd reload its configuration files:
 super + Escape
-	pkill -USR1 -x sxhkd
+    nohup reload_conf
 
+# lock the screen 
 ctrl + alt + Delete
     i3lock
 
 ctrl + p
     exec screen_shot
 
-super + shift + w
-	$BROWSER
+# volume
+XF86AudioRaiseVolume
+    pactl set-sink-volume @DEFAULT_SINK@ +5% 
+
+XF86AudioLowerVolume
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+XF86AudioMute
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
+
+XF86AudioMicMute
+    pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+XF86AudioPrev
+    cmus-remote -r
+
+XF86AudioNext
+    cmus-remote -n
+
+XF86AudioPlay
+    cmus-remote -u
+
+XF86Tools
+    cmus
+    
+super + space
+    $BROWSER
