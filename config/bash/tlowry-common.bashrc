@@ -87,12 +87,16 @@ fd() {
 #fe [FUZZY PATTERN] - Open the selected file with the default editor
 #   - Bypass fuzzy finder if there's only one match (--select-1)
 #   - Exit if there's no match (--exit-0)
+#   add executed command to bash history
 fe() (
-   IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-     [[ -n "$files" ]] && ${EDITOR:-vim} "${files[@]}"
+    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
+    [[ -n "$files" ]] && e_app=${EDITOR:-vim} && echo "$e_app ${files[@]}" >> ~/.bash_history \
+ && $e_app "${files[@]}"
 )
 
 # exports
+
+export HISTCONTROL=ignoredups # don't add duplicate commands to bash history
 
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME="$HOME/.local/share"
