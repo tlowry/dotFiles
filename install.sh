@@ -53,6 +53,7 @@ install_arch() {
 	xdg-mime default sxiv.desktop image/png
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
+    xdg-mime default vim.desktop text/x-python
 
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 

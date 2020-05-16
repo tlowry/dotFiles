@@ -49,9 +49,6 @@ alias diff="diff -bBup"
 alias fid="cvs diff -bBup "$@""
 alias rg="rg --hidden"
 
-#useful history datestamps
-export HISTTIMEFORMAT='%F %T  '
-
 # enable vi mode editing in bash
 set -o vi
 
@@ -75,32 +72,14 @@ if [[ -z "${PYTHON_PATH}" ]]; then
 else
     export PYTHONPATH=$PYTHONPATH:$loc_py_path
 fi
-
-# fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
-
-#fe [FUZZY PATTERN] - Open the selected file with the default editor
-#   - Bypass fuzzy finder if there's only one match (--select-1)
-#   - Exit if there's no match (--exit-0)
-#   add executed command to bash history
-fe() (
-    IFS=$'\n' files=($(fzf --query="$1" --multi --select-1 --exit-0))
-    [[ -n "$files" ]] && e_app=${EDITOR:-vim} && echo "$e_app ${files[@]}" >> ~/.bash_history \
- && $e_app "${files[@]}"
-)
-
 # exports
 
+#useful history datestamps
+export HISTTIMEFORMAT='%F %T  '
 export HISTCONTROL=ignoredups # don't add duplicate commands to bash history
 
 export XDG_CONFIG_HOME=~/.config
 export XDG_DATA_HOME="$HOME/.local/share"
-
 export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 export LESSHISTFILE="-"
 export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
@@ -125,5 +104,5 @@ shell_reload(){
 # key bindings
 bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fd'
-bind -x '"\C-xv": fe'
+bind -x '"\C-xv": fuzz_edit'
 bind -x '"\C-xr": shell_reload'

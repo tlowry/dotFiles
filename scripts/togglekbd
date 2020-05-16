@@ -1,2 +1,2 @@
 #!/bin/sh
-[ $(getkbd) == "us" ] && `setxkbmap ru` || `setxkbmap us`
+[ `getkbd` == "us" ] && `setxkbmap ru` || `setxkbmap us`
