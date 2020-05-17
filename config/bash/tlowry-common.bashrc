@@ -97,12 +97,17 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
+# fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
+fuzz_cd(){ 
+    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf ) && cd "$dir" 
+}
+
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
 }
 
 # key bindings
 bind -x '"\C-xf": fzf'
-bind -x '"\C-xc": fd'
+bind -x '"\C-xc": fuzz_cd'
 bind -x '"\C-xv": fuzz_edit'
 bind -x '"\C-xr": shell_reload'
