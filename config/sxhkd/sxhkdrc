@@ -101,7 +101,6 @@ super + alt + {Left,Down,Up,Right}
 super + {Left,Down,Up,Right}
 	bspc node -z {-20 0,0 20,0 -20,20 0}
 
-
 # DM agnostic keybindings
 # if another app maps these first it will handle them
 # instead
@@ -153,6 +152,9 @@ XF86AudioPlay
 
 XF86Tools
     cmus
+
+super + x
+    togglekbd
 
 super + space
     $BROWSER
