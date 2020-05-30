@@ -1,5 +1,5 @@
 #!/bin/sh
-feed_bar | lemonbar \
+conky | lemonbar  \
 -f -*-Noto-* \
 -g x28 \
 -B "#2e3436"
