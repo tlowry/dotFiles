@@ -1,6 +1,6 @@
 # My Dotfiles
-bash + vim and collection of utility scripts
-Only tested and used on linux, mainly centos & rhel.
+bash, vim, sxhkd, bspwm etc. + collection of utility scripts
+Tested and used on linux, mainly arch but also centos & rhel.
 
 # Install
 Run the install script to source config files and create dynamic links to others
