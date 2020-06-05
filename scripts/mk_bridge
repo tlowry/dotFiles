@@ -1,0 +1,16 @@
+#!/bin/sh
+
+unbridge() {
+    echo "removing $1 from bridge"
+    ip link set "$1" nomaster
+}
+
+dif=`getif`
+[ "undo" == "$1" ] && unbridge "$dif" && exit 0
+
+bn="br0"
+ip link add name $bn type bridge
+ip link set $bn up
+
+ip link set "$dif" up
+ip link set "$dif" master "$bn"

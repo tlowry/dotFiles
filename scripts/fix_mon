@@ -1,2 +1,3 @@
 #!/bin/sh
 xrandr --output HDMI1 --left-of HDMI3
+xrandr --output HDMI3 --mode 1920x1080 --rate 60
