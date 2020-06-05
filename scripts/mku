@@ -1,0 +1,4 @@
+#!/bin/sh
+# makes a new user with sudo privileges
+[ -z "$1" ] && echo "use: mku <username>" && exit 1
+useradd -m $1 && usermod -aG sudo $1 && passwd $1
