@@ -1,0 +1,6 @@
+#!/bin/sh
+#small script for optimal vncserver launch for either tigervnc or tightvnc
+vopts="-geometry 1600x900"
+[ -f /etc/redhat-release ] && vopts=$vopts:" -noreset"
+
+vncserver "$vopts"
