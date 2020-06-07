@@ -103,7 +103,7 @@ fuzz_cd(){
 }
 
 shell_reload(){
-    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
+    bind -f  ~/.inputrc && . ~/.bashrc && xrdb ~/.config/.Xresources && echo "shell reloaded"
 }
 
 # key bindings

@@ -2,4 +2,6 @@
 conky | lemonbar  \
 -f -*-Noto-* \
 -g x28 \
--B "#2e3436"
+-F "#eeeeec" \
+-B "#1d2021" \
+-U "#3465a4" 

@@ -23,6 +23,7 @@ install_base () {
     
     # soft link config to standard location
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+    make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
     make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/i3/config $XDG_CONFIG_HOME/i3/config
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
@@ -30,6 +31,15 @@ install_base () {
     make_link ${DOT_LOC}/config/wget/wgetrc $XDG_CONFIG_HOME/wget/wgetrc
     make_link ${DOT_LOC}/config/sxhkd/sxhkdrc $XDG_CONFIG_HOME/sxhkd/sxhkdrc
     make_link ${DOT_LOC}/config/tmux/tmux.conf $XDG_CONFIG_HOME/tmux/tmux.conf
+    make_link ${DOT_LOC}/config/polybar/config $XDG_CONFIG_HOME/polybar/config
+    make_link ${DOT_LOC}/config/X11/Xresources $XDG_CONFIG_HOME/Xresources
+    make_link ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json $XDG_CONFIG_HOME/wal/colorschemes/dark/supertango.json
+
+    
+    make_link ${DOT_LOC}/config/cmus/rc $XDG_CONFIG_HOME/cmus/rc
+    make_link ${DOT_LOC}/config/cmus/main.theme $XDG_CONFIG_HOME/cmus/main.theme
+    make_link ${DOT_LOC}/config/conky/conky.conf $XDG_CONFIG_HOME/conky/conky.conf
+
     # clean way to add scripts to path (available even where $PATH is not)
     [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }

@@ -127,3 +127,4 @@ au BufRead,BufNewFile *.vue setlocal filetype=html
 ""colorscheme atom
 ""colorscheme afterglow 
 colorscheme codedark
+""colorscheme colors-wal

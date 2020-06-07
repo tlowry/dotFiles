@@ -1,4 +1,5 @@
-centos 7 portable tmux build
-tmux+vim ide
-fzf vim
-git submodule for cog?
+* centos 7 portable tmux build
+* tmux+vim ide
+* fzf vim
+* git submodule for cog
+* wal compatible theming (with minimal plugins)
