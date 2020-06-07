@@ -184,5 +184,4 @@ bar {
     font pango:mono 10
 }
 
-exec fix_mon
 exec $BROWSER

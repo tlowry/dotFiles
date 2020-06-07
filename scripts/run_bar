@@ -3,9 +3,6 @@
 fg=`getx *foreground`
 bg=`getx *background`
 
-echo "$fg" > ~/bleh
-echo "$bg" >> ~/bleh
-
 conky | lemonbar  \
 -f -*-Noto-* \
 -g x28 \

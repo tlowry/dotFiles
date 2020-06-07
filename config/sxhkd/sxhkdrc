@@ -110,7 +110,7 @@ super + Escape
 
 # lock the screen 
 ctrl + alt + Delete
-    ps -ef | grep -v grep | grep i3lock || i3lock -c "#2e3436"
+    lock_screen
 
 ctrl + p
     exec screen_shot
