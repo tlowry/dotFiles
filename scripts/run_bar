@@ -1,7 +1,14 @@
 #!/bin/sh
+
+fg=`getx *foreground`
+bg=`getx *background`
+
+echo "$fg" > ~/bleh
+echo "$bg" >> ~/bleh
+
 conky | lemonbar  \
 -f -*-Noto-* \
 -g x28 \
--F "#eeeeec" \
--B "#1d2021" \
--U "#3465a4" 
+-F "$fg" \
+-B "$bg" \
+-U "#3465a4"

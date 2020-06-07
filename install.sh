@@ -35,7 +35,6 @@ install_base () {
     make_link ${DOT_LOC}/config/X11/Xresources $XDG_CONFIG_HOME/Xresources
     make_link ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json $XDG_CONFIG_HOME/wal/colorschemes/dark/supertango.json
 
-    
     make_link ${DOT_LOC}/config/cmus/rc $XDG_CONFIG_HOME/cmus/rc
     make_link ${DOT_LOC}/config/cmus/main.theme $XDG_CONFIG_HOME/cmus/main.theme
     make_link ${DOT_LOC}/config/conky/conky.conf $XDG_CONFIG_HOME/conky/conky.conf

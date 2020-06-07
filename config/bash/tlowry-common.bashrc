@@ -102,8 +102,10 @@ fuzz_cd(){
 }
 
 shell_reload(){
-    bind -f  ~/.inputrc && . ~/.bashrc && xrdb ~/.config/Xresources && echo "shell reloaded"
+    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
 }
+
+xrdb -merge ~/.config/Xresources
 
 # key bindings
 bind -x '"\C-xf": fzf'
