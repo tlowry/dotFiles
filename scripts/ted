@@ -15,6 +15,8 @@ tmux start-server
 # create a new tmux session, starting vim from a saved session in the new window
 tmux new-session -d -s $session -n vim #"vim -S ~/.vim/sessions/kittybusiness"
 
+#TODO Check session already running, attach if so
+
 # Select pane 1, run vim
 tmux selectp -t 1 
 tmux send-keys "vim" C-m 

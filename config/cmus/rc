@@ -1,0 +1,5 @@
+fset electronic=genre="Electronic"|genre="House"|genre="Electro"|genre="Trance"|genre="Dance"|genre="Pop"
+fset symphonic=genre="Symphonic"|genre="Classical"
+fset rock=genre="rock"
+
+colorscheme main
