@@ -93,7 +93,7 @@ export stor="/run/media/stor"
 export EDITOR="vim"
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-[ -z $BROWSER ] && export BROWSER="brave"
+[ -z $BROWSER ] && export BROWSER="qutebrowser"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
 # fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
