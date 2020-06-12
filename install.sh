@@ -38,6 +38,8 @@ install_base () {
     make_link ${DOT_LOC}/config/cmus/rc $XDG_CONFIG_HOME/cmus/rc
     make_link ${DOT_LOC}/config/cmus/main.theme $XDG_CONFIG_HOME/cmus/main.theme
     make_link ${DOT_LOC}/config/conky/conky.conf $XDG_CONFIG_HOME/conky/conky.conf
+    make_link ${DOT_LOC}/config/qutebrowser/config.py $XDG_CONFIG_HOME/qutebrowser/config.py
+    make_link ${DOT_LOC}/config/lf/lfrc $XDG_CONFIG_HOME/lf/lfrc
 
     # clean way to add scripts to path (available even where $PATH is not)
     [ ! -d ~/.local ] && mkdir ~/.local

@@ -13,7 +13,7 @@ alias gif="git diff"
 alias gad="git add"
 alias gis="git status"
 alias gek="git checkout"
-alias gom="git commit -m"
+alias gom="git commit"
 alias gul="git pull"
 alias gush="git push"
 
