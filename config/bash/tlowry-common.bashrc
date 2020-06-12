@@ -101,11 +101,15 @@ fuzz_cd(){
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf ) && cd "$dir" 
 }
 
-shell_reload(){
-    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
+x_reload() {
+    # only run if x open, massive delay & error otherwise
+    [ -z $DISPLAY ] || xrdb -merge ~/.config/Xresources
+    return 0
 }
 
-xrdb -merge ~/.config/Xresources
+shell_reload(){
+    bind -f  ~/.inputrc && . ~/.bashrc && x_reload && echo "shell reloaded"
+}
 
 # key bindings
 bind -x '"\C-xf": fzf'
