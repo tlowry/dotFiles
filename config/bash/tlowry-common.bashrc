@@ -103,7 +103,7 @@ fuzz_cd(){
 
 x_reload() {
     # only run if x open, massive delay & error otherwise
-    [ -z $DISPLAY ] && xrdb -merge ~/.config/Xresources
+    [ -z $DISPLAY ] || xrdb -merge ~/.config/Xresources
     return 0
 }
 
