@@ -115,6 +115,9 @@ ctrl + alt + Delete
 ctrl + p
     exec sc_clip
 
+ctrl + w
+    exec sc_text
+
 # Focus next/previous window
 alt + {_,shift} + Tab
     bspc node --focus {prev,next}
