@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 [ -z $1 ] && echo "use: enc <file_to_encrypt>" && exit 1
 
 cleanup () {

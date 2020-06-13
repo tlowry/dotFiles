@@ -1,2 +1,2 @@
-#!/bin/bash
+#!/bin/sh
 ip route list | grep default | awk '{ print $5 }'

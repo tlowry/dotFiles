@@ -4,4 +4,15 @@ timestamp=`date +%s`
 img="/tmp/sc_img-$timestamp.png"
 out="/tmp/sc_out"
 
-magick import $img && tesseract "$img" "$out" 2>/dev/null && cat "$out".txt && rm "$out".txt
+clean(){
+    rm -rf "$img"
+    #rm -rf "$out".txt
+}
+
+display(){
+    sed -i '/^$/d' "$1" "$1"
+    #cat "$1"
+    leafpad "$1"
+}
+
+magick import $img && tesseract "$img" "$out" 2>/dev/null && display "$out".txt && clean

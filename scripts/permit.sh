@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 if [ $# -lt 1 ]
   then
     echo "Usage: permit.sh <optional switches> <reference permissions file> <target files>";exit 1

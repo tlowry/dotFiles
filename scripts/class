@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # create a c++ .h & .cpp class given a class name
 GLOBALS=""
 function glob() {
@@ -7,7 +7,7 @@ function glob() {
 
 [ -z "$1" ] && echo "No class name supplied" && exit 1
 
-glob FILE_NAME $1
+glob FILE_NAME "$1"
 glob USER_NAME "tony.lowry"
 glob COMPANY_NAME "github.com/tlowry"
 glob VERSION_NO 2.2
