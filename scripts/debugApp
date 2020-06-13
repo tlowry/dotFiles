@@ -1,2 +1,5 @@
 #!/usr/bin/env bash
-gdbserver localhost:6970 --attach `pgrep $`  
+[ -z "$1" ]
+proc=`pgrep $1`
+echo $proc
+gdbserver localhost:6970 --attach $proc

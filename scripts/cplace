@@ -1,6 +1,6 @@
 #!/bin/sh
 # mv file within it's current directory
-[ -z $2 ] && echo "use: place file <file path> <new file name>" && exit 1
+[ -z "$2" ] && echo "use: place file <file path> <new file name>" && exit 1
 file=$2
 path=`dirname $1`
 cp $1 $path/$2

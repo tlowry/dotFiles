@@ -2,6 +2,6 @@
 [ -z "$1" ] && echo "use: filex <>" && exit 1
 type=`xdg-mime query filetype "$1"`
 def_app=`xdg-mime query default "$type"`
-echo ""$1" $type -> $def_app"
+echo "$1 $type $def_app"
 
-[ ! -z "$2" ] && xdg-mime default $2 $type && echo "$2" now default
+[ ! -z "$2" ] && xdg-mime default "$2" "$type" && echo "$2" now default
