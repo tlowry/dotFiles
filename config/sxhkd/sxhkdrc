@@ -113,7 +113,7 @@ ctrl + alt + Delete
     lock_screen
 
 ctrl + p
-    exec screen_shot
+    exec sc_clip
 
 # Focus next/previous window
 alt + {_,shift} + Tab
