@@ -101,6 +101,12 @@ function CopyPasteMode()
 endfunction
 noremap <F3> :call CopyPasteMode()<CR>
 
+" Tab navigation
+nnoremap <C-h>  :tabprevious<CR>
+nnoremap <C-l>  :tabnext<CR>
+nnoremap <C-t>  :tabnew<CR>
+nnoremap <C-x>  :tabclose<CR>
+
 "" Command helper
 set wildmenu
 set wildmode=longest:list,full
