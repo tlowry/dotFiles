@@ -4,3 +4,4 @@ sxhkd &
 mpd &
 run_bar &
 exec bspwm
+#exec jwm

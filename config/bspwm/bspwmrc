@@ -2,7 +2,7 @@
 
 # delete existing rules (in case of multiple runs of script)
 bspc rule -r "*"
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III
 
 # top padding matches size of bar, tight gaps + border for more space
 bspc config top_padding 28

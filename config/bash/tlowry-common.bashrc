@@ -28,6 +28,7 @@ alias ll="ls -la --color=auto"
 alias la="ls -lart --color=auto"
 
 alias eb="ebook-viewer --detach"
+alias we="curl wttr.in"
 
 # Small less enhancements
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'

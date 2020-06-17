@@ -32,11 +32,11 @@ super + ctrl + {m,x,y,z}
 # focus/swap
 #
 
-# Focus a node without swapping
+# Directional swap + focus 
 super + shift + {h,j,k,l}
     d={west,south,north,east}; bspc node -s $d.local --follow || bspc node -m $d --follow
 
-# Focus a node without swapping
+# Directional swap + focus
 super + shift + {Left,Down,Up,Right}
     d={west,south,north,east}; bspc node -s $d.local --follow || bspc node -m $d --follow
 

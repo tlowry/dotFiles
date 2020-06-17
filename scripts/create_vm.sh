@@ -9,5 +9,5 @@ virt-install \
 --disk path=/var/lib/libvirt/images/centos8.qcow2,bus=virtio,size=20 \
 --vnc \
 --location /run/media/stor/app/os/centos-8.1.1911-x86_64-dvd1.iso \
---network bridge=virbr0  \
+--network bridge=br0  \
 --extra-args ro

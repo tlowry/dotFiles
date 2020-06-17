@@ -10,5 +10,3 @@ cp ~/.cache/wal/colors-wal.vim $DOT_LOC/config/vim/colors
 # copy xresources & reload
 cp ~/.cache/wal/colors.Xresources $DOT_LOC/config/X11/Xresources
 xrdb ~/.config/Xresources
-
-
