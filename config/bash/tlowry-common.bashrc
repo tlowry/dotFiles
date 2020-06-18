@@ -100,6 +100,9 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $BROWSER ] && export BROWSER="qutebrowser"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
+# prevent errors on old vim
+export TERM=xterm
+
 # fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
 fuzz_cd(){ 
     dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf ) && cd "$dir" 
