@@ -34,6 +34,7 @@ install_base () {
     make_link ${DOT_LOC}/config/polybar/config $XDG_CONFIG_HOME/polybar/config
     make_link ${DOT_LOC}/config/X11/Xresources $XDG_CONFIG_HOME/Xresources
     make_link ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json $XDG_CONFIG_HOME/wal/colorschemes/dark/supertango.json
+    make_link ${DOT_LOC}/config/wal/colorschemes/dark/grey.json $XDG_CONFIG_HOME/wal/colorschemes/dark/grey.json
 
     make_link ${DOT_LOC}/config/cmus/rc $XDG_CONFIG_HOME/cmus/rc
     make_link ${DOT_LOC}/config/cmus/main.theme $XDG_CONFIG_HOME/cmus/main.theme
@@ -57,6 +58,7 @@ install_arch() {
     systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
     make_link ${DOT_LOC}/config/bspwm/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
+    make_link ${DOT_LOC}/config/bspwm/bspswallow $XDG_CONFIG_HOME/bspwm/bspswallow
     make_link ${DOT_LOC}/local/share/applications $XDG_DATA_HOME/applications
 
 	xdg-mime default sxiv.desktop image/jpeg
