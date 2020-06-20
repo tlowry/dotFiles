@@ -66,7 +66,7 @@ def load_from_xresources(xresources):
     c.colors.contextmenu.menu.bg = xresources['*.color0']
 
     # Foreground color of the context menu. If set to null, the Qt default is used.
-    c.colors.contextmenu.menu.fg =  base05
+    c.colors.contextmenu.menu.fg = xresources['*.color5']
 
     # Background color of the context menu’s selected item. If set to null, the Qt default is used.
     c.colors.contextmenu.selected.bg = xresources['*.color10']
@@ -589,5 +589,5 @@ c.url.default_page = "about:blank"
 load_theme()
 
 # load theme from xresources if desired
-#xresources = read_xresources('*')
-#load_from_xresources(xresources)
+xresources = read_xresources('*')
+load_from_xresources(xresources)

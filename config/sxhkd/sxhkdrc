@@ -6,10 +6,6 @@ super + alt + {q,r}
 super + {_,shift + }q
     bspc node -{c,k}
 
-# send the newest marked node to the newest preselected node
-super + y
-	bspc node newest.marked.local -n newest.!automatic.local
-
 # swap the current node and the biggest node
 super + g
 	bspc node -s biggest
@@ -40,6 +36,18 @@ super + shift + {h,j,k,l}
 super + shift + {Left,Down,Up,Right}
     d={west,south,north,east}; bspc node -s $d.local --follow || bspc node -m $d --follow
 
+# Focus next/previous window
+alt + {_,shift} + Tab
+    bspc node --focus {prev,next}
+
+# Focus in direction vi
+super + {h,j,k,l}
+    d={west,south,north,east}; bspc node -f $d.local
+
+# Focus in direction arrows 
+super + {Left,Down,Up,Right}
+    d={west,south,north,east}; bspc node -f $d.local
+
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
 	bspc node -f {next,prev}.local
@@ -57,31 +65,19 @@ super + {_,shift + }{1-9,0}
 	bspc {desktop -f,node -d} '^{1-9,10}' --follow
 
 #
-# preselect
-#
-
-# preselect the direction
-super + ctrl + {h,j,k,l}
-	bspc node -p {west,south,north,east}
-
-# preselect the ratio
-super + ctrl + {1-9}
-	bspc node -o 0.{1-9}
-
-# cancel the preselection for the focused node
-super + ctrl + space
-	bspc node -p cancel
-
-# cancel the preselection for the focused desktop
-super + ctrl + shift + space
-	bspc query -N -d | xargs -I id -n 1 bspc node id -p cancel
-
-#
 # move/resize
 #
 
 # expand a window by moving one of its side outward
+super + ctrl + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
 super + alt + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# expand a window by moving one of its side outward
+super + ctrl + {Left,Down,Up,Right}
 	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
 
 # contract a window by moving one of its side inward
@@ -93,8 +89,6 @@ super + alt + {Left,Down,Up,Right}
 #	bspc node -z {-20 0,0 20,0 -20,20 0}
 
 # DM agnostic keybindings
-# if another app maps these first it will handle them
-# instead
 
 # terminal emulator
 super + Return
@@ -112,23 +106,13 @@ super + Escape
 ctrl + alt + Delete
     lock_screen
 
+# take a screen clipping from area
 ctrl + p
     exec sc_clip
 
+# screen clip ocr 
 ctrl + w
     exec sc_text
-
-# Focus next/previous window
-alt + {_,shift} + Tab
-    bspc node --focus {prev,next}
-
-# Focus in direction vi
-super + {h,j,k,l}
-    d={west,south,north,east}; bspc node -f $d.local
-
-# Focus in direction wasd
-super + {Left,Down,Up,Right}
-    d={west,south,north,east}; bspc node -f $d.local
 
 # audio
 XF86AudioRaiseVolume
@@ -153,7 +137,7 @@ XF86AudioPlay
     cmus-remote -u
 
 XF86Tools
-    cmus
+    $TERMINAL -e cmus
 
 # change kbd language input
 super + x
@@ -165,3 +149,6 @@ super + z
 
 super + space
     $BROWSER
+
+super + e
+    $TERMINAL -e lf

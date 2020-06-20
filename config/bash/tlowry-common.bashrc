@@ -101,7 +101,6 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
 # prevent errors on old vim
-export TERM=xterm
 
 # fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
 fuzz_cd(){ 
