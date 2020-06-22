@@ -4,4 +4,4 @@ sxhkd &
 mpd &
 run_bar &
 exec bspwm
-#exec jwm
+#exec jwm -f ~/.config/jwm/jwmrc
