@@ -143,8 +143,6 @@ XF86Tools
 super + x
     togglekbd
 
-
-
 super + space
     $BROWSER
 
