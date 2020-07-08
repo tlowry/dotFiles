@@ -1,5 +1,5 @@
 #!/bin/sh
-killall sxhkd lemonbar
+killall sxhkd lemonbar polybar
 pkill -x sxhkd; sxhkd&
 pkill -x run_bar; run_bar&
 bspc wm -r
