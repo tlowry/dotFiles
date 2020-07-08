@@ -2,14 +2,19 @@
 
 # delete existing rules (in case of multiple runs of script)
 bspc rule -r "*"
-bspc monitor -d I II III
+
+MAIN_MON=`xrandr | grep " connected" | grep primary | awk {'print $1'}`
+LEFT_MON=`xrandr | grep " connected" | grep -v primary | awk {'print $1'}`
+
+bspc monitor "$MAIN_MON" -d I II III
+bspc monitor "$LEFT_MON" -d IV V VI
 
 _bc() {
     bspc config "$@"
 }
 
 # top padding matches size of bar, tight gaps + border for more space
-_bc top_padding 28
+#_bc top_padding 28
 _bc border_width 1
 _bc window_gap 2
 

@@ -18,10 +18,10 @@ def load_from_xresources(xresources):
 
     # Text color of the completion widget. May be a single color to use for
     # all columns or a list of three colors, one for each column.
-    c.colors.completion.fg = xresources['*.color5']
+    c.colors.completion.fg = xresources['*.color7']
 
     # Background color of the completion widget for odd rows.
-    c.colors.completion.odd.bg = xresources['*.color3']
+    c.colors.completion.odd.bg = xresources['*.color0']
 
     # Background color of the completion widget for even rows.
     c.colors.completion.even.bg = xresources['*.color0']
@@ -57,7 +57,7 @@ def load_from_xresources(xresources):
     c.colors.completion.match.fg = xresources['*.color11']
 
     # Color of the scrollbar handle in the completion view.
-    c.colors.completion.scrollbar.fg = xresources['*.color5']
+    c.colors.completion.scrollbar.fg = xresources['*.color7']
 
     # Color of the scrollbar in the completion view.
     c.colors.completion.scrollbar.bg = xresources['*.color0']
@@ -66,7 +66,7 @@ def load_from_xresources(xresources):
     c.colors.contextmenu.menu.bg = xresources['*.color0']
 
     # Foreground color of the context menu. If set to null, the Qt default is used.
-    c.colors.contextmenu.menu.fg = xresources['*.color5']
+    c.colors.contextmenu.menu.fg = xresources['*.color7']
 
     # Background color of the context menu’s selected item. If set to null, the Qt default is used.
     c.colors.contextmenu.selected.bg = xresources['*.color10']
@@ -81,7 +81,7 @@ def load_from_xresources(xresources):
     c.colors.downloads.start.fg = xresources['*.color0']
 
     # Color gradient start for download backgrounds.
-    c.colors.downloads.start.bg = xresources['*.color13']
+    c.colors.downloads.start.bg = xresources['*.color8']
 
     # Color gradient end for download text.
     c.colors.downloads.stop.fg = xresources['*.color0']
@@ -157,10 +157,10 @@ def load_from_xresources(xresources):
     c.colors.statusbar.normal.bg = xresources['*.color0']
 
     # Foreground color of the statusbar in insert mode.
-    c.colors.statusbar.insert.fg = xresources['*.color0']
+    c.colors.statusbar.insert.fg = xresources['*.color7']
 
     # Background color of the statusbar in insert mode.
-    c.colors.statusbar.insert.bg = xresources['*.color13']
+    c.colors.statusbar.insert.bg = xresources['*.color0']
 
     # Foreground color of the statusbar in passthrough mode.
     c.colors.statusbar.passthrough.fg = xresources['*.color0']
@@ -175,13 +175,13 @@ def load_from_xresources(xresources):
     c.colors.statusbar.private.bg = xresources['*.color3']
 
     # Foreground color of the statusbar in command mode.
-    c.colors.statusbar.command.fg = xresources['*.color5']
+    c.colors.statusbar.command.fg = xresources['*.color7']
 
     # Background color of the statusbar in command mode.
     c.colors.statusbar.command.bg = xresources['*.color0']
 
     # Foreground color of the statusbar in private browsing + command mode.
-    c.colors.statusbar.command.private.fg = xresources['*.color5']
+    c.colors.statusbar.command.private.fg = xresources['*.color7']
 
     # Background color of the statusbar in private browsing + command mode.
     c.colors.statusbar.command.private.bg = xresources['*.color0']
@@ -196,10 +196,10 @@ def load_from_xresources(xresources):
     c.colors.statusbar.caret.selection.fg = xresources['*.color0']
 
     # Background color of the statusbar in caret mode with a selection.
-    c.colors.statusbar.caret.selection.bg = xresources['*.color13']
+    c.colors.statusbar.caret.selection.bg = xresources['*.color8']
 
     # Background color of the progress bar.
-    c.colors.statusbar.progress.bg = xresources['*.color13']
+    c.colors.statusbar.progress.bg = xresources['*.color8']
 
     # Default foreground color of the URL in the statusbar.
     c.colors.statusbar.url.fg = xresources['*.color5']
@@ -225,7 +225,7 @@ def load_from_xresources(xresources):
     c.colors.tabs.bar.bg = xresources['*.color0']
 
     # Color gradient start for the tab indicator.
-    c.colors.tabs.indicator.start = xresources['*.color13']
+    c.colors.tabs.indicator.start = xresources['*.color8']
 
     # Color gradient end for the tab indicator.
     c.colors.tabs.indicator.stop = xresources['*.color12']
@@ -234,16 +234,16 @@ def load_from_xresources(xresources):
     c.colors.tabs.indicator.error = xresources['*.color8']
 
     # Foreground color of unselected odd tabs.
-    c.colors.tabs.odd.fg = xresources['*.color5']
+    c.colors.tabs.odd.fg = xresources['*.color7']
 
     # Background color of unselected odd tabs.
-    c.colors.tabs.odd.bg = xresources['*.color3']
+    c.colors.tabs.odd.bg = xresources['*.color8']
 
     # Foreground color of unselected even tabs.
-    c.colors.tabs.even.fg = xresources['*.color5']
+    c.colors.tabs.even.fg = xresources['*.color7']
 
     # Background color of unselected even tabs.
-    c.colors.tabs.even.bg = xresources['*.color0']
+    c.colors.tabs.even.bg = xresources['*.color8']
 
     # Background color of pinned unselected even tabs.
     c.colors.tabs.pinned.even.bg = xresources['*.color12']
@@ -258,13 +258,13 @@ def load_from_xresources(xresources):
     c.colors.tabs.pinned.odd.fg = xresources['*.color7']
 
     # Background color of pinned selected even tabs.
-    c.colors.tabs.pinned.selected.even.bg = xresources['*.color5']
+    c.colors.tabs.pinned.selected.even.bg = xresources['*.color7']
 
     # Foreground color of pinned selected even tabs.
     c.colors.tabs.pinned.selected.even.fg = xresources['*.color0']
 
     # Background color of pinned selected odd tabs.
-    c.colors.tabs.pinned.selected.odd.bg = xresources['*.color5']
+    c.colors.tabs.pinned.selected.odd.bg = xresources['*.color7']
 
     # Foreground color of pinned selected odd tabs.
     c.colors.tabs.pinned.selected.odd.fg = xresources['*.color14']
@@ -273,13 +273,13 @@ def load_from_xresources(xresources):
     c.colors.tabs.selected.odd.fg = xresources['*.color0']
 
     # Background color of selected odd tabs.
-    c.colors.tabs.selected.odd.bg = xresources['*.color5']
+    c.colors.tabs.selected.odd.bg = xresources['*.color7']
 
     # Foreground color of selected even tabs.
     c.colors.tabs.selected.even.fg = xresources['*.color0']
 
     # Background color of selected even tabs.
-    c.colors.tabs.selected.even.bg = xresources['*.color5']
+    c.colors.tabs.selected.even.bg = xresources['*.color7']
 
     # Background color for webpages if unset (or empty to use the theme's
     # color).
@@ -586,7 +586,7 @@ c.url.searchengines = {
 
 c.url.default_page = "about:blank"
 
-load_theme()
+#load_theme()
 
 # load theme from xresources if desired
 xresources = read_xresources('*')
