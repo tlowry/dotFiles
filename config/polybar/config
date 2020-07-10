@@ -20,7 +20,7 @@ background = ${xrdb:background:#1d2021}
 foreground = ${xrdb:foreground:#ebdbb2}
 
 [bar/mainbar]
-modules-right = pulseaudio eth date cpu memory 
+modules-right = date pulseaudio eth cpu memory 
 modules-left = bspwm xkeyboard 
 modules-center = xwindow 
 
@@ -54,7 +54,7 @@ scroll-down = bspwm-deskprev
 
 [module/date]
 type = internal/date
-date = %Y-%m-%d%
+date = %Y-%m-%d %H:%M%
 
 [module/bspwm]
 type = internal/bspwm
@@ -80,8 +80,8 @@ type = internal/network
 interface = enp0s25
 interval = 3.0i
 ping-interval = 3
-label-connected = "🌐 Connected"
-label-disconnected = "🌐 Disconnected"
+label-connected = "🌐 Up"
+label-disconnected = "🌐 Down"
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
