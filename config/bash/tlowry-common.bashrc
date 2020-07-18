@@ -100,7 +100,12 @@ alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $BROWSER ] && export BROWSER="qutebrowser"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
-# prevent errors on old vim
+# python virtualenv setup 
+ve() {
+    env_name="_venv"
+    [ -f "$env_name" ] || virtualenv "$env_name"
+    source "$env_name"/bin/activate
+}
 
 # fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
 fuzz_cd(){ 

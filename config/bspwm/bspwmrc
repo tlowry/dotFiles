@@ -6,8 +6,8 @@ bspc rule -r "*"
 MAIN_MON=`xrandr | grep " connected" | grep primary | awk {'print $1'}`
 LEFT_MON=`xrandr | grep " connected" | grep -v primary | awk {'print $1'}`
 
-bspc monitor "$MAIN_MON" -d I II III
-bspc monitor "$LEFT_MON" -d IV V VI
+bspc monitor "$MAIN_MON" -d I II III 
+bspc monitor "$LEFT_MON" -d IV V VI 
 
 _bc() {
     bspc config "$@"
