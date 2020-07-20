@@ -2,4 +2,6 @@ fset electronic=genre="Electronic"|genre="House"|genre="Electro"|genre="Trance"|
 fset symphonic=genre="Symphonic"|genre="Classical"
 fset rock=genre="rock"
 
+# quit without ask
+bind -f common q wq
 colorscheme main
