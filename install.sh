@@ -13,6 +13,20 @@ make_link () {
     [ -L $2 ] || ln -s $1 $2
 }
 
+# make user scripts available system wide
+ln_scripts () {
+    
+    bin_dir="$HOME/.local/bin"
+    mkdir -p "$bin_dir" 2> /dev/null
+    for file in ${DOT_LOC}/scripts/*
+    do
+        dest_file="$bin_dir/"`basename $file`
+        make_link $file $dest_file
+    done
+
+    make_link "${DOT_LOC}"/scripts/lib "$bin_dir"/lib
+}
+
 # common install for all platforms
 install_base () {
     echo "install base"
@@ -42,10 +56,12 @@ install_base () {
     make_link ${DOT_LOC}/config/qutebrowser/config.py $XDG_CONFIG_HOME/qutebrowser/config.py
     make_link ${DOT_LOC}/config/lf/lfrc $XDG_CONFIG_HOME/lf/lfrc
     make_link ${DOT_LOC}/config/jwm/jwmrc $XDG_CONFIG_HOME/jwm/jwmrc
+    
+    ln_scripts
 
     # clean way to add scripts to path (available even where $PATH is not)
-    [ ! -d ~/.local ] && mkdir ~/.local
-    [ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
+    #[ ! -d ~/.local ] && mkdir ~/.local
+    #[ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
 
 install_private() {
