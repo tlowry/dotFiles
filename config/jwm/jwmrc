@@ -47,23 +47,6 @@
         <Option>notitle</Option>
     </Group>
 
-    <!-- Tray at the bottom. -->
-    <Tray x="0" y="-1" height="30" autohide="off">
-
-        <TrayButton icon="jwm-blue">root:1</TrayButton>
-        <Spacer width="2"/>
-        <TrayButton label="_">showdesktop</TrayButton>
-        <Spacer width="2"/>
-
-        <Pager labeled="true"/>
-
-        <TaskList maxwidth="256"/>
-
-        <Dock/>
-        <Clock format="%H:%M"><Button mask="123">exec:xclock</Button></Clock>
-
-    </Tray>
-
     <!-- Visual Styles -->
     <WindowStyle>
         <Font>SourceCodePro-9:bold</Font>
