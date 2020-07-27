@@ -1,6 +1,6 @@
 xrdb -merge /home/tlowry/.config/Xresources &
 fix_mon &
-sxhkd -c  ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
+sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
 mpd &
 run_bar &
 exec bspwm

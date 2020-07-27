@@ -58,10 +58,6 @@ install_base () {
     make_link ${DOT_LOC}/config/jwm/jwmrc $XDG_CONFIG_HOME/jwm/jwmrc
     
     ln_scripts
-
-    # clean way to add scripts to path (available even where $PATH is not)
-    #[ ! -d ~/.local ] && mkdir ~/.local
-    #[ ! -d ~/.local/bin ] && ln -s ${DOT_LOC}/scripts ~/.local/bin 2> /dev/null
 }
 
 install_private() {
