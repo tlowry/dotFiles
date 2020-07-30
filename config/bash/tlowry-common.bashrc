@@ -58,7 +58,8 @@ set -o vi
 # add scripts + dependency path to PATH
 [ -z $PATH ] && export PATH
 export PATH=$PATH:$DOT_LOC/scripts
-#local_bin="$HOME/.local/bin"
+
+export PATH=`pathmerge "$PATH" "$HOME/.local/bin"`
 
 # add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
