@@ -1,0 +1,9 @@
+auto-reload yes
+
+color listnormal        white color0 bold
+color listnormal_unread white color0 bold
+color listfocus         color0 color7 bold 
+color listfocus_unread  color0 color7 bold
+color info              white color0 bold
+color background        white color0 bold
+color article           white color0 bold
