@@ -55,6 +55,7 @@ install_base () {
     make_link ${DOT_LOC}/config/conky/conky.conf $XDG_CONFIG_HOME/conky/conky.conf
     make_link ${DOT_LOC}/config/qutebrowser/config.py $XDG_CONFIG_HOME/qutebrowser/config.py
     make_link ${DOT_LOC}/config/lf/lfrc $XDG_CONFIG_HOME/lf/lfrc
+    make_link ${DOT_LOC}/config/newsboat/config $XDG_CONFIG_HOME/newsboat/config
     make_link ${DOT_LOC}/config/jwm/jwmrc $XDG_CONFIG_HOME/jwm/jwmrc
     
     ln_scripts
@@ -80,7 +81,7 @@ install_arch() {
 	xdg-mime default sxiv.desktop image/png
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
-    xdg-mime default vim.desktop text/x-python
+    xdg-mime default vim.desktop text/plain
 
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 

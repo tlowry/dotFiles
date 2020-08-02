@@ -14,7 +14,7 @@ alias gad="git add"
 alias gis="git status"
 alias gek="git checkout"
 alias gom="git commit"
-alias gul="git pull"
+alias gull="git pull"
 alias gush="git push"
 
 alias c="cvs"
@@ -29,6 +29,14 @@ alias la="ls -lart --color=auto"
 
 alias eb="ebook-viewer --detach"
 alias we="curl wttr.in"
+alias tad="transmission-remote -a"
+alias tel="transmission-remote -l"
+
+tinfo () { transmission-remote -t "$1" -i; }
+export -f tinfo
+
+trm () { transmission-remote -t "$1" -r; }
+export -f trm
 
 # Small less enhancements
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
@@ -43,6 +51,7 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # useful CVS
 revert () { cvs update -C $1; }
 export -f revert
+
 
 # cvs command to check for modified files
 modded () { cvs -qn update | grep "^[A|M]"; }
@@ -97,6 +106,7 @@ export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
 export stor="/run/media/stor"
 export EDITOR="vim"
+export VISUAL="vim"
 
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z $BROWSER ] && export BROWSER="qutebrowser"

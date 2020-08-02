@@ -1,5 +1,5 @@
 #!/bin/sh
 killall sxhkd polybar
 pkill -x sxhkd; sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
-pkill -x run_bar; run_bar&
+pkill -x run_polybar; run_polybar&
 bspc wm -r

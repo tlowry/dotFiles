@@ -585,8 +585,15 @@ c.url.searchengines = {
 }
 
 c.url.default_page = "about:blank"
+c.url.start_pages = ["about:blank"]
 
-#load_theme()
+# disable notification nag
+c.content.notifications = False
+
+# disable content handler nag (gmail as mail opener etc)
+c.content.register_protocol_handler = False
+
+#c.scrolling.smooth = True # bit laggy, maybe someday
 
 # load theme from xresources if desired
 xresources = read_xresources('*')

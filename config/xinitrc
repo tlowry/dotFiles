@@ -2,7 +2,7 @@ xrdb -merge /home/tlowry/.config/Xresources &
 fix_mon &
 sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
 mpd &
-run_bar &
+run_polybar &
 exec bspwm
 #exec openbox-session
 #exec jwm -f ~/.config/jwm/jwmrc
