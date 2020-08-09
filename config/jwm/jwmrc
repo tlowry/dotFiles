@@ -53,13 +53,13 @@
         <Width>4</Width>
         <Height>21</Height>
         <Corner>3</Corner>
-        <Foreground>#FFFFFF</Foreground>
-        <Background>#555555</Background>
+        <Foreground>#c0c0c0</Foreground>
+        <Background>#2e3436</Background>
         <Outline>#000000</Outline>
         <Opacity>0.5</Opacity>
         <Active>
-            <Foreground>#D4D4D4</Foreground>
-            <Background>#0077CC</Background>
+            <Foreground>#2e3436</Foreground>
+            <Background>#c0c0c0</Background>
             <Outline>#000000</Outline>
             <Opacity>1.0</Opacity>
         </Active>
@@ -168,5 +168,16 @@
     <Key mask="A" key="Left">ldesktop</Key>
     <Key mask="A" key="Up">udesktop</Key>
     <Key mask="A" key="Down">ddesktop</Key>
+
+    <!-- Win Key bindings -->
+    <Key mask="Mod4" key="q">close</Key>
+    <Key mask="Mod4" key="z">maximize</Key>
+    <Key mask="Mod4" key="f">fullscreen</Key>
+
+    <Key mask="AS" key="Left">maxleft</Key>
+    <Key mask="AS" key="Right">maxright</Key>
+
+    <Key mask="4C" key="r">restart</Key>
+    <Key mask="4C" key="q">exit</Key>
 
 </JWM>

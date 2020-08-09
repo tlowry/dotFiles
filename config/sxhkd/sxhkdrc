@@ -56,5 +56,14 @@ super + x
 super + space
     $BROWSER
 
-super + e
+super + n
+    $TERMINAL -e newsboat
+
+super + a
+    calibre
+
+super + w
     $TERMINAL -e lf
+
+super + e
+    $TERMINAL -e vim -c 'startinsert'
