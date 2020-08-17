@@ -8,6 +8,7 @@
             <Program icon="calculator.png" label="Calculator">xcalc</Program>
             <Program icon="chat.png" label="Messaging">alacritty -e irssi</Program>
             <Program icon="www.png" label="Web">qutebrowser</Program>
+            <Program icon="editor.png" label="vim">alacritty -e vim</Program>
             <Program icon="editor.png" label="Edit">leafpad</Program>
             <Program icon="files.png" label="Files">pcmanfm</Program>
         </Menu>

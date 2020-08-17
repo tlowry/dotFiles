@@ -283,7 +283,7 @@ def load_from_xresources(xresources):
 
     # Background color for webpages if unset (or empty to use the theme's
     # color).
-    c.colors.webpage.bg = xresources['*.color0']
+    #c.colors.webpage.bg = xresources['*.color0']
 
 
 # Load a fixed theme

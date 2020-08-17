@@ -1,9 +1,12 @@
+# Common tasks
 xrdb -merge /home/tlowry/.config/Xresources &
 fix_mon &
 mpd &
 run_polybar &
+# Uncomment next 2 lines for bspwm
 sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
 exec bspwm
+# or the following line with either openbox or jwm lines
 #sxhkd -c ~/.config/sxhkd/sxhkdrc &
 #exec openbox-session
 #exec jwm -f ~/.config/jwm/jwmrc

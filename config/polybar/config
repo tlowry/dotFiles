@@ -20,8 +20,8 @@ background = ${xrdb:background:#1d2021}
 foreground = ${xrdb:foreground:#ebdbb2}
 
 [bar/mainbar]
-modules-right = date pulseaudio eth cpu memory 
-modules-left = bspwm xkeyboard 
+modules-right = xkeyboard pulseaudio eth cpu memory 
+modules-left = bspwm date 
 modules-center = xwindow 
 
 enable-ipc = true
@@ -36,6 +36,8 @@ border-color = ${colors.background}
 
 module-margin-left = 1
 module-margin-right = 1
+
+margin-bottom = 28
 
 background = ${colors.background}
 foreground = ${colors.foreground}
