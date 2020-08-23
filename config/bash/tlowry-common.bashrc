@@ -32,6 +32,11 @@ alias we="curl wttr.in"
 alias tad="transmission-remote -a"
 alias tel="transmission-remote -l"
 
+# always collate when printing
+alias lp="lp -o sides=two-sided-long-edge"
+
+alias o="xdg-open"
+
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
 
@@ -133,6 +138,7 @@ x_reload() {
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && x_reload && echo "shell reloaded"
 }
+
 
 # key bindings
 bind -x '"\C-xf": fzf'

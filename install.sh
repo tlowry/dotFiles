@@ -56,7 +56,6 @@ install_base () {
     make_link ${DOT_LOC}/config/qutebrowser/config.py $XDG_CONFIG_HOME/qutebrowser/config.py
     make_link ${DOT_LOC}/config/lf/lfrc $XDG_CONFIG_HOME/lf/lfrc
     make_link ${DOT_LOC}/config/newsboat/config $XDG_CONFIG_HOME/newsboat/config
-    make_link ${DOT_LOC}/config/jwm/jwmrc $XDG_CONFIG_HOME/jwm/jwmrc
     make_link ${DOT_LOC}/config/openbox/rc.xml $XDG_CONFIG_HOME/openbox/rc.xml
     make_link ${DOT_LOC}/config/openbox/menu.xml $XDG_CONFIG_HOME/openbox/menu.xml
     

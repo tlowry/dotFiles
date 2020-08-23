@@ -6,7 +6,6 @@ run_polybar &
 # Uncomment next 2 lines for bspwm
 sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
 exec bspwm
-# or the following line with either openbox or jwm lines
+# And the next 2 lines for openbox
 #sxhkd -c ~/.config/sxhkd/sxhkdrc &
 #exec openbox-session
-#exec jwm -f ~/.config/jwm/jwmrc
