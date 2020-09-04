@@ -10,7 +10,7 @@ super + d
 
 # make sxhkd reload its configuration files:
 super + Escape
-    nohup reload_conf
+    nohup app_ctl refresh
 
 # lock the screen 
 ctrl + alt + Delete
@@ -60,7 +60,7 @@ super + n
     $TERMINAL -e newsboat
 
 super + a
-    calibre
+    $TERMINAL -e pulsemixer
 
 super + w
     $TERMINAL -e lf
