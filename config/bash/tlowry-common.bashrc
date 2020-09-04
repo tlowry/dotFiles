@@ -137,7 +137,7 @@ x_reload() {
 }
 
 shell_reload(){
-    bind -f  ~/.inputrc && . ~/.bashrc && x_reload && echo "shell reloaded"
+    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
 }
 
 # key bindings
