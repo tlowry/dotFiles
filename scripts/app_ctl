@@ -1,0 +1,52 @@
+#!/bin/sh
+
+function start () {
+    xrdb -merge /home/tlowry/.config/Xresources &
+    fix_mon &
+    mpd &
+    run_polybar &
+    # Uncomment next 2 lines for bspwm
+    sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
+}
+
+function refresh () {
+    killall sxhkd polybar mpd
+
+    sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
+    pkill -x run_polybar
+    fix_mon &
+    run_polybar&
+    mpd &
+    bspc wm -r
+}
+
+function stop () {
+    killall sxhkd polybar mpd
+}
+
+function restart() {
+    stop
+    start
+}
+
+case "$1" in 
+    "start")
+        echo start
+            start
+        ;;
+    "stop")
+        echo stop
+            stop
+        ;;
+    "refresh")
+        echo refresh 
+            refresh 
+        ;;
+
+    "restart")
+        echo restart
+            restart
+        ;;
+    *)
+        echo "use app_ctl <start|stop|restart|refresh>" 
+esac
