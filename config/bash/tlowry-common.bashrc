@@ -41,6 +41,8 @@ alias listen="nc -vv -l 0.0.0.0"
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
 
+alias s="sudo"
+
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
 
@@ -116,8 +118,9 @@ export stor="/run/media/stor"
 export EDITOR="vim"
 export VISUAL="vim"
 
+alias gdb="gdb -nh -x $XDG_CONFIG_HOME/gdb/init"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-[ -z $BROWSER ] && export BROWSER="qutebrowser"
+[ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
 # python virtualenv setup 
