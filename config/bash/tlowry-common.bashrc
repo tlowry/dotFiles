@@ -36,6 +36,7 @@ alias tel="transmission-remote -l"
 alias lp="lp -o sides=two-sided-long-edge"
 
 alias o="xdg-open"
+alias s="sudo"
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
@@ -56,7 +57,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 # useful CVS
 revert () { cvs update -C $1; }
 export -f revert
-
 
 # cvs command to check for modified files
 modded () { cvs -qn update | grep "^[A|M]"; }
@@ -113,8 +113,9 @@ export stor="/run/media/stor"
 export EDITOR="vim"
 export VISUAL="vim"
 
+alias gdb="gdb -nh -x $XDG_CONFIG_HOME/gdb/init"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-[ -z $BROWSER ] && export BROWSER="qutebrowser"
+[ -z $BROWSER ] && export BROWSER="brave"
 [ -z $TERMINAL ] && export TERMINAL="alacritty"
 
 # python virtualenv setup 
@@ -138,7 +139,6 @@ x_reload() {
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && x_reload && echo "shell reloaded"
 }
-
 
 # key bindings
 bind -x '"\C-xf": fzf'
