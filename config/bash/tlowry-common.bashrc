@@ -34,8 +34,12 @@ alias tel="transmission-remote -l"
 
 # always collate when printing
 alias lp="lp -o sides=two-sided-long-edge"
-
 alias o="xdg-open"
+alias docker="podman"
+alias listen="nc -vv -l 0.0.0.0"
+
+mu () { mkdir "$1" && cd "$1"; }
+export -f mu
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
@@ -57,7 +61,6 @@ export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 revert () { cvs update -C $1; }
 export -f revert
 
-
 # cvs command to check for modified files
 modded () { cvs -qn update | grep "^[A|M]"; }
 export -f modded
@@ -73,7 +76,7 @@ set -o vi
 [ -z $PATH ] && export PATH
 export PATH=$PATH:$DOT_LOC/scripts
 
-export PATH=`pathmerge "$PATH" "$HOME/.local/bin"`
+#export PATH=`pathmerge "$PATH" "$HOME/.local/bin"`
 
 # add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
@@ -138,7 +141,6 @@ x_reload() {
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
 }
-
 
 # key bindings
 bind -x '"\C-xf": fzf'
