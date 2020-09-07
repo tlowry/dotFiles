@@ -1,16 +1,25 @@
 #!/bin/bash
-
-# find the current location of this script
-DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-
-. $DOT_LOC/scripts/util.sh
-append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
-
 make_link () {
     dest_dir=`dirname $2` 2> /dev/null
     [ -f $dest_dir ] || mkdir -p $dest_dir
     [ -L $2 ] && unlink $2
     [ -L $2 ] || ln -s $1 $2
+}
+
+# Remove a literal line from a file (no regex)
+# e.g del_lit_line "hello" hello.txt - creates hello.txt.bak
+del_lit_line () {
+    num=`fgrep -n "$1" "$2" | cut -d':' -f1`
+    [ -z "$num" ] || sed -i.bak -e "$num"d "$2"
+}
+
+ul_scripts () {
+    bin_dir="$HOME/.local/bin"
+    dots_bin="${DOT_LOC}/scripts"
+    for file in $bin_dir/*
+    do
+        readlink -f "$file" | grep -q "$dots_bin" && unlink "$file"
+    done
 }
 
 # make user scripts available system wide
@@ -27,9 +36,31 @@ ln_scripts () {
     make_link "${DOT_LOC}"/scripts/lib "$bin_dir"/lib
 }
 
+ul_apps () {
+    app_dir="$XDG_DATA_HOME/applications"
+    dot_apps="${DOT_LOC}/local/share/applications"
+    for file in $app_dir/*
+    do
+        readlink -f "$file" | grep -q "$dot_apps" && unlink "$file"
+    done
+}
+
+# install apps
+ln_apps () {
+    app_dir="$XDG_DATA_HOME/applications"
+    mkdir -p "$app_dir" 2> /dev/null
+    for file in ${DOT_LOC}/local/share/applications/*
+    do
+        dest_file="$app_dir/"`basename $file`
+        make_link $file $dest_file
+    done
+}
+
 # common install for all platforms
 install_base () {
     echo "install base"
+
+    append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
     # Don't overwrite existing config (create if missing and source)
     create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
     create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
@@ -38,7 +69,7 @@ install_base () {
     # soft link config to standard location
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
-    make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
+    [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/i3/config $XDG_CONFIG_HOME/i3/config
     make_link ${DOT_LOC}/config/alacritty/alacritty.yml $XDG_CONFIG_HOME/alacritty/alacritty.yml
     make_link ${DOT_LOC}/config/mpv/mpv.conf $XDG_CONFIG_HOME/mpv/mpv.conf
@@ -60,6 +91,21 @@ install_base () {
     make_link ${DOT_LOC}/config/openbox/menu.xml $XDG_CONFIG_HOME/openbox/menu.xml
     
     ln_scripts
+    ln_apps
+
+    distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
+
+    [ "$1" == "home" ] && install_private
+}
+
+uninstall() {
+    echo "uninstall"
+    del_lit_line ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
+    del_lit_line ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
+    del_lit_line "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
+    del_lit_line "export DOT_LOC=$DOT_LOC" ~/.bashrc
+    ul_scripts
+    ul_apps
 }
 
 install_private() {
@@ -74,7 +120,6 @@ install_arch() {
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
     make_link ${DOT_LOC}/config/bspwm/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
     make_link ${DOT_LOC}/config/bspwm/bspswallow $XDG_CONFIG_HOME/bspwm/bspswallow
-    make_link ${DOT_LOC}/local/share/applications $XDG_DATA_HOME/applications
 
 	xdg-mime default sxiv.desktop image/jpeg
 	xdg-mime default sxiv.desktop image/png
@@ -82,25 +127,31 @@ install_arch() {
 	xdg-mime default sxiv.desktop image/png
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
-    xdg-mime default vim.desktop text/plain
+    	xdg-mime default vim.desktop text/plain
 
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 
 }
 
-# rhel/centos specific
-install_rhel() {
-    echo "install rhel"
-    # add a gnome 3 app icon to open a tabbed terminal
-    ln -s ${DOT_LOC}/config/tlowry_term.desktop ${HOME}/.local/share/applications
+usage() {
+    echo "use install.sh < -r optional to uninstall >"
 }
 
+while [ "$1" != "" ]; do
+    case $1 in
+        -r | --remove )         REMOVE=1
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     ;; 
+    esac
+    shift
+done
+
+# find the current location of this script
+DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+. $DOT_LOC/scripts/util.sh
+
 [ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=~/.config 
-install_base
-
-[ -f /etc/redhat-release ] && install_rhel
-
-distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
-echo $distro
-
-[ "$1" == "home" ] && install_private
+if [ -z "$REMOVE" ]; then install_base; else uninstall ; fi
