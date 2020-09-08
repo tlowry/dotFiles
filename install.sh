@@ -92,12 +92,12 @@ install_base () {
     create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     
-
     # soft link config to standard location
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
     
+    # more straightforward directory mapped configs
     for x in ${MAIN_CONFS[@]};do
         ln_conf "$x"
     done
