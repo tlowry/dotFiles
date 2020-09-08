@@ -1,2 +1,0 @@
-#!/bin/sh
-xrandr -q | grep " primary " | cut -d " " -f 1

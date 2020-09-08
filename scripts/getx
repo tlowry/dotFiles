@@ -1,3 +1,0 @@
-#!/bin/sh
-[ -z "$1" ] && echo "use: getx <xresource>" && exit 1
-xrdb -query | grep "^$1:" | cut -f 2
