@@ -27,9 +27,9 @@ del_lit_line () {
     [ -z "$num" ] || sed -i.bak -e "$num"d "$2"
 }
 
-ul_scripts () {
+ul_bin () {
     bin_dir="$HOME/.local/bin"
-    dots_bin="${DOT_LOC}/scripts"
+    dots_bin="${DOT_LOC}/bin"
     for file in $bin_dir/*
     do
         readlink -f "$file" | grep -q "$dots_bin" && [ -L "$file" ] && unlink "$file"
@@ -37,17 +37,17 @@ ul_scripts () {
 }
 
 # make user scripts available system wide
-ln_scripts () {
+ln_bin () {
     
     bin_dir="$HOME/.local/bin"
     mkdir -p "$bin_dir" 2> /dev/null
-    for file in ${DOT_LOC}/scripts/*
+    for file in ${DOT_LOC}/bin/*
     do
         dest_file="$bin_dir/"`basename $file`
         make_link $file $dest_file
     done
 
-    make_link "${DOT_LOC}"/scripts/lib "$bin_dir"/lib
+    make_link "${DOT_LOC}"/bin/lib "$bin_dir"/lib
 }
 
 ul_apps () {
@@ -55,7 +55,7 @@ ul_apps () {
     dot_apps="${DOT_LOC}/local/share/applications"
     for file in $app_dir/*
     do
-        [ -L "$file" ] && readlink -f "$file" | grep -q "$dot_apps" && echo "unlink "$file""
+        [ -L "$file" ] && readlink -f "$file" | grep -q "$dot_apps" && unlink "$file"
     done
 }
 
@@ -66,6 +66,7 @@ ln_apps () {
     for file in ${DOT_LOC}/local/share/applications/*
     do
         dest_file="$app_dir/"`basename $file`
+        [ -L "$dest_file" ] && unlink "$dest_file"
         make_link $file $dest_file
     done
 }
@@ -102,7 +103,7 @@ install_base () {
         ln_conf "$x"
     done
     
-    ln_scripts
+    ln_bin
     ln_apps
 
     distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
@@ -121,13 +122,13 @@ uninstall() {
         ul_conf "$x"
     done
 
-    ul_scripts
+    ul_bin
     ul_apps
 }
 
 install_private() {
     echo "install private"    
-    dec private.tgz.gpg && private/private
+    ${DOT_LOC}/bin/dec private.tgz.gpg && private/private
 }
 
 # arch/manjaro specific
@@ -170,7 +171,7 @@ done
 
 # find the current location of this script
 DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
-. $DOT_LOC/scripts/util.sh
+. $DOT_LOC/bin/util.sh
 
 [ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=~/.config 
 
