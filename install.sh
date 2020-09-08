@@ -106,7 +106,7 @@ install_base () {
     ln_bin
     ln_apps
 
-    distro=`uname -a | cut -d " " -f 2` ;[ $distro == "archlinux" ] && install_arch
+    distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && install_arch
 
     [ -z "$PERSONAL" ] || install_private
 }
