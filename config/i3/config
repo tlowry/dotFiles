@@ -49,7 +49,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 floating_modifier $mod
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
@@ -183,5 +183,3 @@ bar {
 	status_command i3status
     font pango:mono 10
 }
-
-exec $BROWSER

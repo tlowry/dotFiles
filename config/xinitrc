@@ -4,8 +4,9 @@ fix_mon &
 mpd &
 run_polybar &
 # Uncomment next 2 lines for bspwm
-sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
-exec bspwm
-# And the next 2 lines for openbox
-#sxhkd -c ~/.config/sxhkd/sxhkdrc &
-#exec openbox-session
+#sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
+#exec bspwm
+# common keybindings for any wm/de 
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
+# uncomment 1 line above and any de/wm of choice below
+exec openbox-session
