@@ -3,7 +3,7 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/i3/config         ${DOT_LOC}/config/alacritty/alacritty.yml 
     ${DOT_LOC}/config/mpv/mpv.conf      ${DOT_LOC}/config/wget/wgetrc 
     ${DOT_LOC}/config/sxhkd/sxhkdrc     ${DOT_LOC}/config/tmux/tmux.conf
-    ${DOT_LOC}/config/polybar/config    ${DOT_LOC}/config/X11/Xresources
+    ${DOT_LOC}/config/polybar/config    
     ${DOT_LOC}/config/cmus/rc           ${DOT_LOC}/config/cmus/main.theme
     ${DOT_LOC}/config/conky/conky.conf  ${DOT_LOC}/config/qutebrowser/config.py
     ${DOT_LOC}/config/lf/lfrc           ${DOT_LOC}/config/newsboat/config
@@ -11,6 +11,11 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/mpd/mpd.conf
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
+)
+
+ARCH_CONFS=(
+    ${DOT_LOC}/config/sxhkd/bspwm       ${DOT_LOC}/config/bspwm/bspwmrc
+    ${DOT_LOC}/config/bspwm/bspswallow  ${DOT_LOC}/config/sxhkd/sxhkdrc
 )
 
 make_link () {
@@ -97,6 +102,7 @@ install_base () {
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
+    make_link ${DOT_LOC}/config/X11/Xresources ~/.config/Xresources
     
     # more straightforward directory mapped configs
     for x in ${MAIN_CONFS[@]};do
@@ -117,6 +123,8 @@ uninstall() {
     del_lit_line ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
     del_lit_line "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     del_lit_line "export DOT_LOC=$DOT_LOC" ~/.bashrc
+    
+    unlink ~/.config/Xresources
 
     for x in ${MAIN_CONFS[@]};do
         ul_conf "$x"
@@ -124,6 +132,8 @@ uninstall() {
 
     ul_bin
     ul_apps
+
+    distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && uninstall_arch
 }
 
 install_private() {
@@ -136,12 +146,14 @@ install_arch() {
     echo "install arch"
     systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
-    make_link ${DOT_LOC}/config/bspwm/bspwmrc $XDG_CONFIG_HOME/bspwm/bspwmrc
-    make_link ${DOT_LOC}/config/bspwm/bspswallow $XDG_CONFIG_HOME/bspwm/bspswallow
+
+    for x in ${arch_confs[@]};do
+        ln_conf "$x"
+    done
 
 	xdg-mime default sxiv.desktop image/jpeg
 	xdg-mime default sxiv.desktop image/png
-	xdg-mime default sxiv.desktop image/gif	# TODO: sxiv -a for anim
+	xdg-mime default sxiv.desktop image/gif	# todo: sxiv -a for anim
 	xdg-mime default sxiv.desktop image/png
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
@@ -149,6 +161,17 @@ install_arch() {
 
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 
+}
+
+# arch/manjaro specific
+uninstall_arch() {
+    echo "uninstall arch"
+    [ -L ~/.xinitrc ] && unlink ~/.xinitrc
+
+    # more straightforward directory mapped configs
+    for x in ${arch_confs[@]};do
+        ul_conf "$x"
+    done
 }
 
 usage() {
