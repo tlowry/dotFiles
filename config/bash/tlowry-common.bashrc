@@ -74,22 +74,22 @@ alias rg="rg --hidden"
 # enable vi mode editing in bash
 set -o vi
 
-# add scripts + dependency path to PATH
+# add bin + dependency path to PATH
 [ -z $PATH ] && export PATH
-export PATH=$PATH:$DOT_LOC/scripts
+export PATH=$PATH:$DOT_LOC/bin
 
 #export PATH=`pathmerge "$PATH" "$HOME/.local/bin"`
 
 # add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-    LD_LIBRARY_PATH=$DOT_LOC/scripts/lib
+    LD_LIBRARY_PATH=$DOT_LOC/bin/lib
 else
     LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DOT_LOC/lib
 fi
 
 export LD_LIBRARY_PATH
 
-loc_py_path="$DOT_LOC/scripts/lib/cogapp-2.5.1"
+loc_py_path="$DOT_LOC/bin/lib/cogapp-2.5.1"
 # add portable python libs + dependent libs
 if [[ -z "${PYTHON_PATH}" ]]; then
     export PYTHONPATH=$loc_py_path
