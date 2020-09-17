@@ -8,7 +8,8 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/conky/conky.conf  ${DOT_LOC}/config/qutebrowser/config.py
     ${DOT_LOC}/config/lf/lfrc           ${DOT_LOC}/config/newsboat/config
     ${DOT_LOC}/config/openbox/rc.xml    ${DOT_LOC}/config/openbox/menu.xml
-    ${DOT_LOC}/config/mpd/mpd.conf
+    ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
+    ${DOT_LOC}/config/git/ignore
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
 )
