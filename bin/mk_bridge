@@ -9,7 +9,7 @@ unbridge() {
 }
 
 # this should be the 'real' interface
-dif="enp0s25"
+dif=`getif`
 
 # if 'undo' arg supplied then unbridge
 [ "undo" == "$1" ] && unbridge "$dif" && exit 0
