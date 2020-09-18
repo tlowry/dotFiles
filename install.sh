@@ -160,6 +160,8 @@ install_arch() {
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
     xdg-mime default vim.desktop text/plain
+    xdg-mime default vim.desktop text/markdown
+    xdg-mime default mpv.desktop audio/x-opus+ogg
 
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
 	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 
