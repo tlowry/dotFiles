@@ -15,8 +15,9 @@ MAIN_CONFS=(
 )
 
 ARCH_CONFS=(
-    ${DOT_LOC}/config/sxhkd/bspwm       ${DOT_LOC}/config/bspwm/bspwmrc
-    ${DOT_LOC}/config/bspwm/bspswallow  ${DOT_LOC}/config/sxhkd/sxhkdrc
+    ${DOT_LOC}/config/sxhkd/bspwm       ${DOT_LOC}/config/sxhkd/sxhkdrc
+    ${DOT_LOC}/config/bspwm/bspwmrc     ${DOT_LOC}/config/bspwm/noswallow
+    ${DOT_LOC}/config/bspwm/terminals
 )
 
 make_link () {
@@ -148,7 +149,7 @@ install_arch() {
     systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
     make_link ${DOT_LOC}/config/xinitrc ~/.xinitrc
 
-    for x in ${arch_confs[@]};do
+    for x in ${ARCH_CONFS[@]};do
         ln_conf "$x"
     done
 
