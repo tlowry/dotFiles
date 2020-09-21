@@ -6,4 +6,4 @@ Comment=Open a tabbed terminal session
 Exec=gnome-terminal
 Icon=/usr/share/icons/Adwaita/96x96/apps/utilities-terminal-symbolic.symbolic.png
 Terminal=false
-Exec=nohup tlowry_term.sh
+Exec=nohup tlowry_term
