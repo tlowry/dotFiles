@@ -101,7 +101,7 @@ install_base () {
     create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     
     # soft link config to standard location
-    [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash_profile ~/.bash_profile
+    [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
     make_link ${DOT_LOC}/config/X11/Xresources ~/.config/Xresources
@@ -115,8 +115,6 @@ install_base () {
     ln_apps
 
     distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && install_arch
-
-    [ -z "$PERSONAL" ] || install_private
 }
 
 uninstall() {
@@ -136,11 +134,6 @@ uninstall() {
     ul_apps
 
     distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && uninstall_arch
-}
-
-install_private() {
-    echo "install private"    
-    ${DOT_LOC}/bin/dec private.tgz.gpg && private/private
 }
 
 # arch/manjaro specific
