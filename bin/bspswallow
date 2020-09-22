@@ -2,12 +2,12 @@
 
 # Get class of a wid
 get_class() {
-	id=$1
-  if [ -z "$id" ]; then
-    echo ""
-  else
-	  xprop -id "$id" | sed -n '/WM_CLASS\|WM_COMMAND/s/.*"\(.*\)".*/\1/p'
-  fi
+    id=$1
+    if [ -z "$id" ]; then
+        echo ""
+    else
+        xprop -id "$id" | sed -n '/WM_CLASS\|WM_COMMAND/s/.*"\(.*\)".*/\1/p'
+    fi
 }
 
 swallow() {

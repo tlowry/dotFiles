@@ -11,4 +11,4 @@ e_rep='s/\([-_]\)\1\+/\1/g' # repeating
 e_br='s/_-_/-/g' # rm bridge
 
 file_name=`echo "$1" | sed "$e_sp;$e_plus;$e_spec;$e_brace;$e_uncap;$e_quote;$e_rep;$e_br"`
-echo $file_name
+echo "$file_name"
