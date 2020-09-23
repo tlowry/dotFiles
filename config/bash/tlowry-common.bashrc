@@ -35,8 +35,12 @@ alias tel="transmission-remote -l"
 # always collate when printing
 alias lp="lp -o sides=two-sided-long-edge"
 alias o="xdg-open"
-alias docker="podman"
+#alias docker="podman"
+
 alias listen="nc -vv -l 0.0.0.0"
+
+dcon () { docker exec -it "$1" sh; }
+export -f dcon
 
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
