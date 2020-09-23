@@ -38,6 +38,8 @@ alias o="xdg-open"
 alias docker="podman"
 alias listen="nc -vv -l 0.0.0.0"
 
+co () { ssh "$USER@mirror.local"; }
+
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
 

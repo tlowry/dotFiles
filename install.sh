@@ -193,6 +193,6 @@ done
 DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 . $DOT_LOC/bin/util.sh
 
-[ -z $XDG_CONFIG_HOME ] && export XDG_CONFIG_HOME=~/.config 
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config 
 
 if [ -z "$REMOVE" ]; then install_base ; else uninstall ; fi
