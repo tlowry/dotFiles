@@ -3,7 +3,7 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/i3/config         ${DOT_LOC}/config/alacritty/alacritty.yml 
     ${DOT_LOC}/config/mpv/mpv.conf      ${DOT_LOC}/config/wget/wgetrc 
     ${DOT_LOC}/config/sxhkd/sxhkdrc     ${DOT_LOC}/config/tmux/tmux.conf
-    ${DOT_LOC}/config/polybar/config    
+    ${DOT_LOC}/config/polybar/config    ${DOT_LOC}/config/ncmpcpp/config
     ${DOT_LOC}/config/cmus/rc           ${DOT_LOC}/config/cmus/main.theme
     ${DOT_LOC}/config/conky/conky.conf  ${DOT_LOC}/config/qutebrowser/config.py
     ${DOT_LOC}/config/lf/lfrc           ${DOT_LOC}/config/newsboat/config

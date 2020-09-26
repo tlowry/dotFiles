@@ -41,13 +41,25 @@ alias listen="nc -vv -l 0.0.0.0"
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 
-co () { ssh "$USER@$1"; }
+co () { 
+    TERM='xterm-256color'
+    u="$USER"
+    [ -z "$2" ] || u="$2"
+    ssh "$u@$1"; 
+}
 export -f co
 
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
 
+ff () {
+    find . -name "*$1*"
+}
+export -f ff
+
 alias s="sudo"
+
+
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
@@ -66,7 +78,7 @@ export LESS_TERMCAP_us=$'\E[1;32m'     # begin underline
 export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # useful CVS
-revert () { cvs update -C $1; }
+revert () { cvs update -C "$1"; }
 export -f revert
 
 # cvs command to check for modified files
