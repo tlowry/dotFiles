@@ -35,10 +35,14 @@ alias tel="transmission-remote -l"
 # always collate when printing
 alias lp="lp -o sides=two-sided-long-edge"
 alias o="xdg-open"
-alias docker="podman"
+
 alias listen="nc -vv -l 0.0.0.0"
 
-co () { ssh "$USER@mirror.local"; }
+dcon () { docker exec -it "$1" sh; }
+export -f dcon
+
+co () { ssh "$USER@$1"; }
+export -f co
 
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
