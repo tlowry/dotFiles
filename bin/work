@@ -1,2 +1,2 @@
 #!/bin/sh
-alacritty --hold --working-directory="/home/tlowry/dev/ai" -e "ls"
+alacritty --working-directory="/home/tlowry/dev/ai" -e "bash"

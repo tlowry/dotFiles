@@ -107,6 +107,9 @@ nnoremap <C-l>  :tabnext<CR>
 nnoremap <C-t>  :tabnew<CR>
 nnoremap <C-x>  :tabclose<CR>
 
+" execute current file
+nnoremap <C-z> :!%:p<CR>
+
 " insert current time 
 nnoremap <F2> "=strftime("%a %G-%m-%d ")<CR>P
 
