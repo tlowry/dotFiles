@@ -1,5 +1,5 @@
 #!/bin/sh
-[ -z "$1" ] && echo "use: door <remote_machine_name> " && exit 1
+[ -z "$1" ] && echo "use: door <remote_machine_name> <user_name>" && exit 1
 
 mk_key () {
     ssh-keygen -t rsa -q -f "$1" -N ""
