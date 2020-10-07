@@ -49,7 +49,7 @@ startup_screen = "playlist_editor"
 startup_slave_screen_focus = "no"
 
 # Colors
-color1 = 242
+color1 = 242 
 color2 = 242
 visualizer_color = 242
 empty_tag_color = 242
