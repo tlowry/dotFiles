@@ -11,3 +11,4 @@ Run the install script to source config files and create dynamic links to others
 * tmux+vim ide
 * git submodule for cog
 * wal compatible theming (with minimal plugins)
+* calcurse
