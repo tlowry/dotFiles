@@ -12,13 +12,13 @@ if [ $# -gt 0 ]
     fi
 fi
 
-GOOD_FILE=$1
+GOOD_FILE="$1"
 
 # remaining args should be list of files
 shift 1
 BAD_FILES=$@
 
-echo copying permissions from $GOOD_FILE to $BAD_FILES
-chown $OPTS --reference $GOOD_FILE $BAD_FILES
-chgrp $OPTS --reference $GOOD_FILE $BAD_FILES
-chmod $OPTS --reference $GOOD_FILE $BAD_FILES
+echo copying permissions from "$GOOD_FILE" to "$BAD_FILES"
+chown "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
+chmod "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
+chgrp "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
