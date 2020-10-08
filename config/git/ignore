@@ -17,6 +17,7 @@
 # Logs #
 ######################
 *.log
+nohup.out
 
 # OS generated files #
 ######################

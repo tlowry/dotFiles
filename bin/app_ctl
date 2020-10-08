@@ -10,7 +10,7 @@ function start () {
 }
 
 function refresh () {
-    killall sxhkd polybar mpd
+    killall sxhkd polybar 
 
     sxhkd -c ~/.config/sxhkd/sxhkdrc ~/.config/sxhkd/bspwm &
     pkill -x run_polybar
@@ -21,7 +21,7 @@ function refresh () {
 }
 
 function stop () {
-    killall sxhkd polybar mpd
+    killall sxhkd polybar 
 }
 
 function restart() {
