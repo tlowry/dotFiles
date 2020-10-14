@@ -12,4 +12,4 @@ RUSER="$USER"
 [ -z "$2" ] || RUSER="$2"
 key="$HOME/.ssh/id_rsa"
 [ -f "$key" ] || mk_key "$key"  
-cat "$key.pub" | ssh "$RUSER@$1" 'cat >> .ssh/authorized_keys'
+cat "$key.pub" | ssh "$RUSER@$1" "cat >> .ssh/authorized_keys"

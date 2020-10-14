@@ -59,7 +59,10 @@ export -f ff
 
 alias s="sudo"
 
-
+flib () {
+    ldconfig -p | grep -i "$1"
+}
+export -f flib
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
