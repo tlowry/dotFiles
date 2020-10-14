@@ -25,11 +25,8 @@ ctrl + w
     exec sc_text
 
 # audio
-XF86AudioRaiseVolume
-    pactl set-sink-volume @DEFAULT_SINK@ +5% 
-
-XF86AudioLowerVolume
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
+XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {+,-}5% 
 
 XF86AudioMute
     pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -38,16 +35,25 @@ XF86AudioMicMute
     pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 XF86AudioPrev
-    cmus-remote -r
+    mpc prev
 
 XF86AudioNext
-    cmus-remote -n
+    mpc next
 
 XF86AudioPlay
-    cmus-remote -u
+    mpc toggle
+
+XF86AudioRecord
+	audacity
+
+XF86Audio{Rewind,Forward}
+	mpc seek {-,+}10
+
+XF86AudioMedia
+	$TERMINAL -e ncmpcpp
 
 XF86Tools
-    $TERMINAL -e cmus
+    $TERMINAL -e ncmpcpp 
 
 # change kbd language input
 super + x

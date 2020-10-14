@@ -38,6 +38,8 @@ alias o="xdg-open"
 
 alias listen="nc -vv -l 0.0.0.0"
 
+shopt -s cdspell
+
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 

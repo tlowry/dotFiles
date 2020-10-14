@@ -150,6 +150,7 @@ install_arch() {
 	xdg-mime default sxiv.desktop image/png
 	xdg-mime default sxiv.desktop image/gif	# todo: sxiv -a for anim
 	xdg-mime default sxiv.desktop image/png
+    xdg-mime default sxiv.desktop image/webp
 	xdg-mime default zathura.desktop application/epub+zip
 	xdg-mime default zathura.desktop application/pdf
     xdg-mime default vim.desktop text/plain
