@@ -12,6 +12,9 @@ super + d
 super + Escape
     nohup app_ctl refresh
 
+super + c 
+    $TERMINAL -e neomutt
+
 # lock the screen 
 ctrl + alt + Delete
     lock_screen

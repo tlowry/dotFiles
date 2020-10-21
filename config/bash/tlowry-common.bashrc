@@ -43,11 +43,13 @@ shopt -s cdspell
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 
-co () { 
+co () {
+    PREVTERM="$TERM"
     TERM='xterm-256color'
     u="$USER"
     [ -z "$2" ] || u="$2"
-    ssh "$u@$1"; 
+    ssh "$u@$1";
+    TERM="$PREVTERM"
 }
 export -f co
 
