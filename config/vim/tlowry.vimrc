@@ -77,6 +77,8 @@ endif
 
 "" end sensible vim
 
+filetype plugin indent on
+
 "" tab = 4 spaces    
 set tabstop=4
 set shiftwidth=4
@@ -135,6 +137,8 @@ set path+=**
 
 "" recognize file extensions
 au BufRead,BufNewFile *.vue setlocal filetype=html
+
+execute pathogen#infect()
 
 ""colorscheme atom
 ""colorscheme afterglow 
