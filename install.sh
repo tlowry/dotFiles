@@ -104,7 +104,21 @@ install_base () {
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
+    make_link ${DOT_LOC}/config/vim/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
+    
     make_link ${DOT_LOC}/config/X11/Xresources ~/.config/Xresources
+
+    # vim pathogen plugins
+    mkdir -p ~/.vim/bundle
+   
+    # pull down any plugins stored as submodules
+    git submodule update --init
+
+    # link any installed plugins
+	for dir in config/vim/bundle/*
+	do
+        make_link "${DOT_LOC}/$dir" ~/.vim/bundle/"${dir##*/}"
+	done
     
     # more straightforward directory mapped configs
     for x in ${MAIN_CONFS[@]};do
