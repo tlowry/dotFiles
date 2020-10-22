@@ -38,14 +38,18 @@ alias o="xdg-open"
 
 alias listen="nc -vv -l 0.0.0.0"
 
+shopt -s cdspell
+
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 
-co () { 
+co () {
+    PREVTERM="$TERM"
     TERM='xterm-256color'
     u="$USER"
     [ -z "$2" ] || u="$2"
-    ssh "$u@$1"; 
+    ssh "$u@$1";
+    TERM="$PREVTERM"
 }
 export -f co
 
@@ -63,6 +67,11 @@ dl () {
     wget -q "$1"
 }
 export -f dl
+
+flib () {
+    ldconfig -p | grep -i "$1"
+}
+export -f flib
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo

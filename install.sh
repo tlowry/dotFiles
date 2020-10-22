@@ -20,10 +20,14 @@ ARCH_CONFS=(
     ${DOT_LOC}/config/bspwm/terminals
 )
 
+ul () {
+    [ -L "$1" ] && unlink "$1"
+}
+
 make_link () {
     dest_dir=`dirname $2` 2> /dev/null
     [ -f $dest_dir ] || mkdir -p $dest_dir
-    [ -L $2 ] && unlink $2
+    ul "$2"
     [ -L $2 ] || ln -s $1 $2
 }
 
@@ -39,7 +43,7 @@ ul_bin () {
     dots_bin="${DOT_LOC}/bin"
     for file in $bin_dir/*
     do
-        readlink -f "$file" | grep -q "$dots_bin" && [ -L "$file" ] && unlink "$file"
+        readlink -f "$file" | grep -q "$dots_bin" && ul "$file"
     done
 }
 
@@ -73,21 +77,21 @@ ln_apps () {
     for file in ${DOT_LOC}/local/share/applications/*
     do
         dest_file="$app_dir/"`basename $file`
-        [ -L "$dest_file" ] && unlink "$dest_file"
-        make_link $file $dest_file
+        ul "$dest_file"
+        make_link "$file" "$dest_file"
     done
 }
 
-ln_conf() {
+ln_conf () {
     dest=`echo $1 | sed 's/.*\/config\///g'`
     dest=$XDG_CONFIG_HOME/$dest
     make_link "$1" "$dest"
 }
 
-ul_conf() {
+ul_conf () {
     dest=`echo $1 | sed 's/.*\/config\///g'`
     dest=$XDG_CONFIG_HOME/$dest
-    [ -L "$dest" ] && unlink "$dest"
+    ul "$dest"
 }
 
 # common install for all platforms
@@ -104,7 +108,20 @@ install_base () {
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
+    make_link ${DOT_LOC}/config/vim/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
     make_link ${DOT_LOC}/config/X11/Xresources ~/.config/Xresources
+
+    # vim pathogen plugins
+    mkdir -p ~/.vim/bundle
+   
+    # pull down any plugins stored as submodules
+    git submodule update --init
+
+    # link any installed plugins
+    for dir in config/vim/bundle/*
+    do
+        make_link "${DOT_LOC}/$dir" ~/.vim/bundle/"${dir##*/}"
+    done
     
     # more straightforward directory mapped configs
     for x in ${MAIN_CONFS[@]};do
@@ -117,14 +134,30 @@ install_base () {
     distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && install_arch
 }
 
-uninstall() {
+ul_vim () {
+    ul ~/.vim/autoload/pathogen.vim
+
+    # unlink any installed plugins
+    for dir in ~/.vim/bundle/*
+    do
+        ul "$dir"
+    done
+
+    # unlink any installed colors 
+    for dir in ~/.vim/colors/*
+    do
+        ul "$dir"
+    done
+}
+
+uninstall () {
     echo "uninstall"
     del_lit_line ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
     del_lit_line ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
     del_lit_line "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     del_lit_line "export DOT_LOC=$DOT_LOC" ~/.bashrc
     
-    unlink ~/.config/Xresources
+    ul ~/.config/Xresources
 
     for x in ${MAIN_CONFS[@]};do
         ul_conf "$x"
@@ -132,6 +165,7 @@ uninstall() {
 
     ul_bin
     ul_apps
+    ul_vim
 
     distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && uninstall_arch
 }
@@ -146,24 +180,25 @@ install_arch() {
         ln_conf "$x"
     done
 
-	xdg-mime default sxiv.desktop image/jpeg
-	xdg-mime default sxiv.desktop image/png
-	xdg-mime default sxiv.desktop image/gif	# todo: sxiv -a for anim
-	xdg-mime default sxiv.desktop image/png
-	xdg-mime default zathura.desktop application/epub+zip
-	xdg-mime default zathura.desktop application/pdf
+    xdg-mime default sxiv.desktop image/jpeg
+    xdg-mime default sxiv.desktop image/png
+    xdg-mime default sxiv.desktop image/gif    # todo: sxiv -a for anim
+    xdg-mime default sxiv.desktop image/png
+    xdg-mime default sxiv.desktop image/webp
+    xdg-mime default zathura.desktop application/epub+zip
+    xdg-mime default zathura.desktop application/pdf
     xdg-mime default vim.desktop text/plain
     xdg-mime default vim.desktop text/markdown
     xdg-mime default mpv.desktop audio/x-opus+ogg
+    xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
+    xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook
 
-	xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
-	xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook 
 }
 
 # arch/manjaro specific
-uninstall_arch() {
+uninstall_arch () {
     echo "uninstall arch"
-    [ -L ~/.xinitrc ] && unlink ~/.xinitrc
+    ul ~/.xinitrc
 
     # more straightforward directory mapped configs
     for x in ${arch_confs[@]};do
@@ -171,19 +206,19 @@ uninstall_arch() {
     done
 }
 
-usage() {
+usage () {
     echo "use install.sh < -r optional to uninstall >"
 }
 
 while [ "$1" != "" ]; do
     case $1 in
         -p | --personal )       PERSONAL=1
-				;;
+                ;;
         -r | --remove )         REMOVE=1
-				;;
+                ;;
         -h | --help )           usage
                                 exit
-				;;
+                ;;
         * )                     ;; 
     esac
     shift

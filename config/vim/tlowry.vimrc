@@ -77,6 +77,8 @@ endif
 
 "" end sensible vim
 
+filetype plugin indent on
+
 "" tab = 4 spaces    
 set tabstop=4
 set shiftwidth=4
@@ -108,7 +110,7 @@ nnoremap <C-t>  :tabnew<CR>
 nnoremap <C-x>  :tabclose<CR>
 
 " execute current file
-nnoremap <C-z> :!%:p<CR>
+nnoremap <C-v> :!%:p<CR>
 
 " insert current time 
 nnoremap <F2> "=strftime("%a %G-%m-%d ")<CR>P
@@ -135,6 +137,8 @@ set path+=**
 
 "" recognize file extensions
 au BufRead,BufNewFile *.vue setlocal filetype=html
+
+execute pathogen#infect()
 
 ""colorscheme atom
 ""colorscheme afterglow 
