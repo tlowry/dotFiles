@@ -59,7 +59,10 @@ export -f ff
 
 alias s="sudo"
 
-
+dl () {
+    wget -q "$1"
+}
+export -f dl
 
 tinfo () { transmission-remote -t "$1" -i; }
 export -f tinfo
