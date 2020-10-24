@@ -1,4 +1,5 @@
 #!/bin/bash
+
 MAIN_CONFS=( 
     ${DOT_LOC}/config/i3/config         ${DOT_LOC}/config/alacritty/alacritty.yml 
     ${DOT_LOC}/config/mpv/mpv.conf      ${DOT_LOC}/config/wget/wgetrc 
@@ -39,7 +40,7 @@ del_lit_line () {
 }
 
 ul_bin () {
-    bin_dir="$HOME/.local/bin"
+    bin_dir="$XDG_BIN_HOME"
     dots_bin="${DOT_LOC}/bin"
     for file in $bin_dir/*
     do
@@ -50,7 +51,7 @@ ul_bin () {
 # make user scripts available system wide
 ln_bin () {
     
-    bin_dir="$HOME/.local/bin"
+    bin_dir="$XDG_BIN_HOME"
     mkdir -p "$bin_dir" 2> /dev/null
     for file in ${DOT_LOC}/bin/*
     do
@@ -62,8 +63,6 @@ ln_bin () {
 }
 
 ul_apps () {
-
-    [ -z "$XDG_DATA_HOME" ] || XDG_DATA_HOME="$HOME/.local/share"
     app_dir="$XDG_DATA_HOME/applications"
     dot_apps="${DOT_LOC}/share/applications"
     for file in $app_dir/*
@@ -74,8 +73,6 @@ ul_apps () {
 
 # install apps
 ln_apps () {
-    [ -z "$XDG_DATA_HOME" ] || XDG_DATA_HOME="$HOME/.local/share"
-    [ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_DATA_HOME"
 
     app_dir="$XDG_DATA_HOME/applications"
     mkdir -p "$app_dir" 2> /dev/null
@@ -233,6 +230,16 @@ done
 DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 . $DOT_LOC/bin/util.sh
 
-[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config 
+[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config
+[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
+
+[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+[ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
+
+[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
+[ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
+
+[ -z "$XDG_BIN_HOME" ] && export XDG_BIN_HOME="$HOME/.local/bin"
+[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
 
 if [ -z "$REMOVE" ]; then install_base ; else uninstall ; fi
