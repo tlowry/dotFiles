@@ -1,5 +1,9 @@
 [user]
 	name = tlowry
 	email = tonylowryie@gmail.com
+
 [branch "master"]
+        rebase = true
+
+[branch "main"]
         rebase = true
