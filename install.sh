@@ -237,7 +237,7 @@ DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 [ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
 
 [ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
-[ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
+[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
 
 [ -z "$XDG_BIN_HOME" ] && export XDG_BIN_HOME="$HOME/.local/bin"
 [ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
