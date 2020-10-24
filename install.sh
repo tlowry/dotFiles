@@ -63,6 +63,7 @@ ln_bin () {
 
 ul_apps () {
 
+    [ -z "$XDG_DATA_HOME" ] || XDG_DATA_HOME="$HOME/.local/share"
     app_dir="$XDG_DATA_HOME/applications"
     dot_apps="${DOT_LOC}/share/applications"
     for file in $app_dir/*
