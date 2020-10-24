@@ -2,13 +2,6 @@
 # prime remote box for ssh login without password 
 [ -z "$1" ] && echo "use: door <sshuser@remote>" && exit 1
 
-# generate a local key
-mk_key () {
-    ssh-keygen -t rsa -q -f "$1" -N ""
-    chmod 400 "$1"
-    eval $(ssh-agent)
-    ssh-add
-}
 
 # send a key to remote authorized file
 push_key () {
