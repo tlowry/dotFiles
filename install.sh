@@ -62,8 +62,9 @@ ln_bin () {
 }
 
 ul_apps () {
+
     app_dir="$XDG_DATA_HOME/applications"
-    dot_apps="${DOT_LOC}/local/share/applications"
+    dot_apps="${DOT_LOC}/share/applications"
     for file in $app_dir/*
     do
         [ -L "$file" ] && readlink -f "$file" | grep -q "$dot_apps" && unlink "$file"
@@ -72,9 +73,12 @@ ul_apps () {
 
 # install apps
 ln_apps () {
+    [ -z "$XDG_DATA_HOME" ] || XDG_DATA_HOME="$HOME/.local/share"
+    [ -d "$XDG_DATA_HOME" ] || mkdir -p "$XDG_DATA_HOME"
+
     app_dir="$XDG_DATA_HOME/applications"
     mkdir -p "$app_dir" 2> /dev/null
-    for file in ${DOT_LOC}/local/share/applications/*
+    for file in ${DOT_LOC}/share/applications/*
     do
         dest_file="$app_dir/"`basename $file`
         ul "$dest_file"
