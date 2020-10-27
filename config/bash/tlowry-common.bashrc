@@ -56,6 +56,9 @@ export -f co
 mu () { mkdir "$1" && cd "$1"; }
 export -f mu
 
+zf () { zip -r "$1".zip "$1"; }
+export -f zf
+
 ff () {
     find . -name "*$1*" 2>/dev/null 
 }
