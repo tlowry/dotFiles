@@ -57,7 +57,7 @@ mu () { mkdir "$1" && cd "$1"; }
 export -f mu
 
 ff () {
-    find . -name "*$1*"
+    find . -name "*$1*" 2>/dev/null 
 }
 export -f ff
 
