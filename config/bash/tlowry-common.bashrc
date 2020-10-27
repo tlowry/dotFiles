@@ -63,6 +63,11 @@ export -f ff
 
 alias s="sudo"
 
+dl () {
+    wget -q "$1"
+}
+export -f dl
+
 flib () {
     ldconfig -p | grep -i "$1"
 }
