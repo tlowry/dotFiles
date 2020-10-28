@@ -19,6 +19,6 @@ shift 1
 BAD_FILES=$@
 
 echo copying permissions from "$GOOD_FILE" to "$BAD_FILES"
-chown "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
-chmod "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
-chgrp "$OPTS" --reference "$GOOD_FILE $BAD_FILES"
+chown --reference "$GOOD_FILE" "$BAD_FILES"
+chmod --reference "$GOOD_FILE" "$BAD_FILES"
+chgrp --reference "$GOOD_FILE" "$BAD_FILES"

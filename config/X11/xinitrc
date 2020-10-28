@@ -1,5 +1,5 @@
 # Common tasks
-xrdb -merge /home/tlowry/.config/Xresources &
+xrdb -merge /home/"$USER"/.config/Xresources &
 fix_mon &
 mpd &
 run_polybar &
