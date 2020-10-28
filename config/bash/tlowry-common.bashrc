@@ -40,6 +40,8 @@ alias listen="nc -vv -l 0.0.0.0"
 
 shopt -s cdspell
 
+alias vg="valgrind --tool=memcheck --leak-check=full -v --log-file=app-vg.pid%p"
+
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 
