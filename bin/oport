@@ -4,5 +4,5 @@
 [ -z "$2" ] && host="127.0.0.1" && port="$1" 
 if [[ ! -z "$2" ]]; then host="$1" && port="$2"; fi
 
-nc -zw10 "$host" "$port" && echo "$port open on $host" && exit 0
+nc -w10 "$host" "$port" && echo "$port open on $host" && exit 0
 echo "$port closed on $host" && exit 1
