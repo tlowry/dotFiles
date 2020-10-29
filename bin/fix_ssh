@@ -4,3 +4,6 @@ chmod 700 ~/.ssh
 [ -f ~/.ssh/authorized_keys ] || touch ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 restorecon -R -v ~/.ssh
+
+pgrep ssh-agentx || eval `ssh-agent -s`
+ssh-add
