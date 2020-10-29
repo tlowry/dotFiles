@@ -1,3 +1,5 @@
+[push]
+    default = simple
 [user]
 	name = tlowry
 	email = tonylowryie@gmail.com
