@@ -5,10 +5,6 @@ set shellopts '-eu'
 
 map <enter> shell
 
-# execute current file (must be executable)
-map x $$f
-map X !$f
-
 cmd open $xdg-open "$f"
 
 cmd delete ${{
@@ -21,4 +17,4 @@ cmd delete ${{
     [ $ans = "y" ] && rm -rf "$fx"
 }}
 
-map D delete
+map x delete

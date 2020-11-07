@@ -7,6 +7,7 @@ alias ci="vim"
 alias vu="vim"
 alias vo="vim"
 alias vi="vim"
+alias v="vim"
 
 alias g="git"
 alias gif="git diff"
