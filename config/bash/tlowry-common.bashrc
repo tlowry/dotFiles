@@ -85,6 +85,11 @@ export -f tinfo
 trm () { transmission-remote -t "$1" -r; }
 export -f trm
 
+rep () {
+find ./ -type f -exec sed -i -e "s/$1/$2/g" {} \;
+}
+export -f rep 
+
 # Small less enhancements
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
 export LESS_TERMCAP_mb=$'\E[1;31m'     # begin bold
@@ -186,3 +191,6 @@ bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fuzz_cd'
 bind -x '"\C-xv": fuzz_edit'
 bind -x '"\C-xr": shell_reload'
+
+# rust stuff
+[ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env

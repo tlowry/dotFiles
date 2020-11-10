@@ -1,8 +1,5 @@
 #!/bin/sh
 [ -z "$1" ] && echo "use: opport <host (option)> <port>" && exit 1
 
-[ -z "$2" ] && host="127.0.0.1" && port="$1" 
-if [[ ! -z "$2" ]]; then host="$1" && port="$2"; fi
-
-nc -w10 "$host" "$port" && echo "$port open on $host" && exit 0
+nc -z "$host" "$port" && echo "$port open on $host" && exit 0
 echo "$port closed on $host" && exit 1
