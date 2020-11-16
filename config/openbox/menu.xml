@@ -5,7 +5,15 @@
 <menu id="apps-accessories-menu" label="Accessories">
   <item label="Calculator">
     <action name="Execute">
-      <command>xcalc</command>
+      <command>galculator</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
+  <item label="news">
+    <action name="Execute">
+      <command>alacritty -e newsboat</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
@@ -117,12 +125,28 @@
       </startupnotify>
     </action>
   </item>
+  <item label="ncmpcpp">
+    <action name="Execute">
+      <command>alacritty -e ncmpcpp</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+    </action>
+  </item>
 </menu>
 
 <menu id="apps-fileman-menu" label="File Managers">
   <item label="PCMan File Manager">
     <action name="Execute">
       <command>pcmanfm</command>
+      <startupnotify>
+        <enabled>yes</enabled>
+      </startupnotify>
+  </action>
+  </item>
+  <item label="lf">
+    <action name="Execute">
+      <command>alacritty -e lf</command>
       <startupnotify>
         <enabled>yes</enabled>
       </startupnotify>
