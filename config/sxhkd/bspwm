@@ -17,7 +17,7 @@ super + g
 
 # set the window state
 super + {t,s}
-	bspc node -t {tiled,pseudo_tiled}
+	bspc node -t {tiled,floating}
 
 super + f
     bspc node -t ~fullscreen
@@ -52,7 +52,7 @@ super + {h,j,k,l}
 
 # Focus in direction arrows 
 super + {Left,Down,Up,Right}
-    d={west,south,north,east}; bspc node -f $d.local
+    d={west,south,north,east}; x=0;y=0;[ "$d" == "west" ] && x=-20; [ "$d" == "east" ] && x=20; [ "$d" == "south" ] && y=20;[ "$d" == "north" ] && y=-20; bspc node focused.floating -v $x $y || bspc node -f $d.local 
 
 # focus the next/previous node in the current desktop
 super + {_,shift + }c
