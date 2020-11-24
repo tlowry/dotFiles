@@ -85,10 +85,10 @@ export -f tinfo
 trm () { transmission-remote -t "$1" -r; }
 export -f trm
 
-rep () {
+repl () {
 find ./ -type f -exec sed -i -e "s/$1/$2/g" {} \;
 }
-export -f rep 
+export -f repl 
 
 # Small less enhancements
 export LESS='--quit-if-one-screen --ignore-case --status-column --LONG-PROMPT --RAW-CONTROL-CHARS --HILITE-UNREAD --tabs=4 --no-init --window=-4'
