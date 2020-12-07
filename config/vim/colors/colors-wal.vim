@@ -1,5 +1,5 @@
 " Special
-let wallpaper  = "/run/media/stor/pic/wallhaven-0wy8dq.jpg"
+let wallpaper  = "/stor/pic/wallhaven-0wy8dq.jpg"
 let background = "#2e3436"
 let foreground = "#eeeeec"
 let cursor     = "#c0c0c0"

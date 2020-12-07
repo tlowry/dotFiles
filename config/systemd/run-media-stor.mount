@@ -2,7 +2,7 @@
 Description = NTFS disk mount
 [Mount]
 What = /dev/disk/by-uuid/4E2AF8662AF84C89
-Where = /run/media/stor
+Where = /stor
 Type =ntfs
 Options = rw,nodev,nosuid,windows_names,uid=1000,gid=1001,uhelper
 

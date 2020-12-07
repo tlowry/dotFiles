@@ -1,0 +1,10 @@
+[Unit]
+Description = ext4 disk mount
+[Mount]
+What = /dev/disk/by-uuid/1a09dab9-bd78-455a-9f58-7c39e0f17fd0
+Where = /stor
+Type= ext4
+Options = defaults
+
+[Install]
+WantedBy = multi-user.target

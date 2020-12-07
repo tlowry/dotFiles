@@ -155,7 +155,6 @@ export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
 export CARGO_HOME="${XDG_DATA_HOME:-$HOME/.local/share}/cargo"
 export GOPATH="${XDG_DATA_HOME:-$HOME/.local/share}/go"
 export FZF_DEFAULT_COMMAND='rg --files --hidden -g '!.git/*''
-export stor="/run/media/stor"
 export EDITOR="vim"
 export VISUAL="vim"
 

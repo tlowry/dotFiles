@@ -175,7 +175,7 @@ uninstall () {
 # arch/manjaro specific
 install_arch() {
     echo "install arch"
-    systemctl -q is-active run-media-stor.mount || sudo inst_sysd config/systemd/run-media-stor.mount
+    systemctl -q is-active stor.mount || sudo inst_sysd config/systemd/stor.mount
     make_link ${DOT_LOC}/config/X11/xinitrc ~/.xinitrc
 
     for x in ${ARCH_CONFS[@]};do
