@@ -89,7 +89,7 @@ trm () { transmission-remote -t "$1" -r; }
 export -f trm
 
 repl () {
-find ./ -type f -exec sed -i -e "s/$1/$2/g" {} \;
+    find ./ -type f -exec sed -i -e "s/$1/$2/g" {} \;
 }
 export -f repl 
 
@@ -119,16 +119,16 @@ alias rg="rg --hidden"
 set -o vi
 
 # add bin + dependency path to PATH
-[ -z $PATH ] && export PATH
-export PATH=$PATH:$DOT_LOC/bin
+[ -z "$PATH" ] && export PATH
+export PATH="$PATH":"$DOT_LOC"/bin
 
 #export PATH=`pathmerge "$PATH" "$HOME/.local/bin"`
 
 # add portable system libs 
 if [[ -z "${LD_LIBRARY_PATH}" ]]; then
-    LD_LIBRARY_PATH=$DOT_LOC/bin/lib
+    LD_LIBRARY_PATH="$DOT_LOC"/bin/lib
 else
-    LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$DOT_LOC/lib
+    LD_LIBRARY_PATH="$LD_LIBRARY_PATH":"$DOT_LOC"/lib
 fi
 
 export LD_LIBRARY_PATH
@@ -136,9 +136,9 @@ export LD_LIBRARY_PATH
 loc_py_path="$DOT_LOC/bin/lib/cogapp-2.5.1"
 # add portable python libs + dependent libs
 if [[ -z "${PYTHON_PATH}" ]]; then
-    export PYTHONPATH=$loc_py_path
+    export PYTHONPATH="$loc_py_path"
 else
-    export PYTHONPATH=$PYTHONPATH:$loc_py_path
+    export PYTHONPATH="$PYTHONPATH:$loc_py_path"
 fi
 # exports
 
@@ -163,8 +163,8 @@ export VISUAL="vim"
 
 alias gdb="gdb -nh -x $XDG_CONFIG_HOME/gdb/init"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
-[ -z $BROWSER ] && export BROWSER="brave"
-[ -z $TERMINAL ] && export TERMINAL="alacritty"
+[ -z "$BROWSER" ] && export BROWSER="brave"
+[ -z "$TERMINAL" ] && export TERMINAL="alacritty"
 
 # python virtualenv setup 
 ve() {
@@ -180,19 +180,19 @@ fuzz_cd(){
 
 x_reload() {
     # only run if x open, massive delay & error otherwise
-    [ -z $DISPLAY ] || xrdb -merge ~/.config/Xresources
+    [ -z "$DISPLAY" ] || xrdb -merge ~/.config/Xresources
     return 0
 }
 
 shell_reload(){
-    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded"
+    bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded" && return 0
 }
+
+# rust stuff
+[ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env
 
 # key bindings
 bind -x '"\C-xf": fzf'
 bind -x '"\C-xc": fuzz_cd'
 bind -x '"\C-xv": fuzz_edit'
 bind -x '"\C-xr": shell_reload'
-
-# rust stuff
-[ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env

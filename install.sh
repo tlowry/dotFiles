@@ -56,7 +56,7 @@ ln_bin () {
     for file in ${DOT_LOC}/bin/*
     do
         dest_file="$bin_dir/"`basename $file`
-        make_link $file $dest_file
+        make_link "$file" "$dest_file"
     done
 
     make_link "${DOT_LOC}"/bin/lib "$bin_dir"/lib
