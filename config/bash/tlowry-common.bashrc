@@ -43,6 +43,9 @@ shopt -s cdspell
 
 alias vg="valgrind --tool=memcheck --leak-check=full -v --log-file=app-vg.pid%p"
 
+pp () { [ -z "$1" ] && echo "use pp <proc> " && return 1; kill -9 `ps -ef | grep -v "grep" | grep "$1" | awk '{ print $2 }'` ;}
+export -f pp
+
 dcon () { docker exec -it "$1" sh; }
 export -f dcon
 
