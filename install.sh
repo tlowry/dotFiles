@@ -10,7 +10,7 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/lf/lfrc           ${DOT_LOC}/config/newsboat/config
     ${DOT_LOC}/config/openbox/rc.xml    ${DOT_LOC}/config/openbox/menu.xml
     ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
-    ${DOT_LOC}/config/git/ignore
+    ${DOT_LOC}/config/git/ignore        ${DOT_LOC}/config/shell/shellrc
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
 )
@@ -101,8 +101,10 @@ install_base () {
     echo "install base"
 
     append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
+    append_if_missing "export DOT_LOC=$DOT_LOC" ~/.zshrc
     # Don't overwrite existing config (create if missing and source)
     create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
+    create_and_append ". ${DOT_LOC}/config/shell/shellrc" ~/.zshrc
     create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
     
@@ -133,7 +135,7 @@ install_base () {
     ln_bin
     ln_apps
 
-    distro=`uname -a | cut -d " " -f 2` ; echo $distro | grep -q "arch" && install_arch
+    distro=`cat /etc/os-release` ; echo $distro | grep -q "ID_LIKE=arch" && install_arch
 }
 
 ul_vim () {
@@ -175,7 +177,6 @@ uninstall () {
 # arch/manjaro specific
 install_arch() {
     echo "install arch"
-    systemctl -q is-active stor.mount || sudo inst_sysd config/systemd/stor.mount
     make_link ${DOT_LOC}/config/X11/xinitrc ~/.xinitrc
 
     for x in ${ARCH_CONFS[@]};do
@@ -195,6 +196,7 @@ install_arch() {
     xdg-mime default calibre-ebook-viewer.desktop application/x-mobipocket-ebook
     xdg-mime default calibre-ebook-viewer.desktop application/x-mobi8-ebook
 
+    #systemctl -q is-active stor.mount || sudo inst_sysd config/systemd/stor.mount
 }
 
 # arch/manjaro specific
@@ -227,7 +229,12 @@ while [ "$1" != "" ]; do
 done
 
 # find the current location of this script
-DOT_LOC="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+SCRIPT_DIR=`dirname ${BASH_SOURCE[0]-$0}`
+DOT_LOC=`cd $SCRIPT_DIR && pwd`
+echo "Script dir is $SCRIPT_DIR "
+echo "dot dir is $DOT_LOC" 
+
 . $DOT_LOC/bin/util.sh
 
 [ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config
