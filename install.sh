@@ -101,7 +101,7 @@ install_base () {
     echo "install base"
 
     append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
-    append_if_missing "export DOT_LOC=$DOT_LOC" ~/.zshrc
+    [ -f ~/.zshrc ] && append_if_missing "export DOT_LOC=$DOT_LOC" ~/.zshrc
     # Don't overwrite existing config (create if missing and source)
     create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
     create_and_append ". ${DOT_LOC}/config/shell/shellrc" ~/.zshrc
@@ -232,8 +232,6 @@ done
 
 SCRIPT_DIR=`dirname ${BASH_SOURCE[0]-$0}`
 DOT_LOC=`cd $SCRIPT_DIR && pwd`
-echo "Script dir is $SCRIPT_DIR "
-echo "dot dir is $DOT_LOC" 
 
 . $DOT_LOC/bin/util.sh
 
