@@ -4,7 +4,6 @@
 set -o vi
 shopt -s cdspell
 
-
 shell_reload(){
     bind -f  ~/.inputrc && . ~/.bashrc && echo "shell reloaded" && return 0
 }
