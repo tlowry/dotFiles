@@ -183,6 +183,7 @@ install_arch() {
         ln_conf "$x"
     done
 
+    xdg-mime default thunar.desktop inode/directory
     xdg-mime default sxiv.desktop image/jpeg
     xdg-mime default sxiv.desktop image/png
     xdg-mime default sxiv.desktop image/gif    # todo: sxiv -a for anim
