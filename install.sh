@@ -11,6 +11,9 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/openbox/rc.xml    ${DOT_LOC}/config/openbox/menu.xml
     ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
     ${DOT_LOC}/config/git/ignore        ${DOT_LOC}/config/shell/shellrc
+    ${DOT_LOC}/config/vim/tlowry.vimrc
+    ${DOT_LOC}/config/input/inputrc
+    ${DOT_LOC}/config/bash/tlowry-common.bashrc
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
 )
@@ -100,14 +103,13 @@ ul_conf () {
 install_base () {
     echo "install base"
 
-    append_if_missing "export DOT_LOC=$DOT_LOC" ~/.bashrc
-    [ -f ~/.zshrc ] && append_if_missing "export DOT_LOC=$DOT_LOC" ~/.zshrc
     # Don't overwrite existing config (create if missing and source)
-    create_and_append ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
-    create_and_append ". ${DOT_LOC}/config/shell/shellrc" ~/.zshrc
-    create_and_append ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
-    create_and_append "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
-    
+    create_and_append ". $XDG_CONFIG_HOME/bash/tlowry-common.bashrc" ~/.bashrc
+    create_and_append ". $XDG_CONFIG_HOME/shell/shellrc" ~/.zshrc
+    create_and_append ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
+    create_and_append "\$include $XDG_CONFIG_HOME/input/inputrc" ~/.inputrc
+
+
     # soft link config to standard location
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
@@ -156,10 +158,9 @@ ul_vim () {
 
 uninstall () {
     echo "uninstall"
-    del_lit_line ". ${DOT_LOC}/config/bash/tlowry-common.bashrc" ~/.bashrc
-    del_lit_line ":so ${DOT_LOC}/config/vim/tlowry.vimrc" ~/.vimrc 
-    del_lit_line "\$include ${DOT_LOC}/config/input/inputrc" ~/.inputrc
-    del_lit_line "export DOT_LOC=$DOT_LOC" ~/.bashrc
+    del_lit_line ". $XDG_CONFIG_HOME/bash/tlowry-common.bashrc" ~/.bashrc
+    del_lit_line ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
+    del_lit_line "\$include $XDG_CONFIG_HOME/config/input/inputrc" ~/.inputrc
     
     ul ~/.config/Xresources
 
@@ -183,7 +184,7 @@ install_arch() {
         ln_conf "$x"
     done
 
-    xdg-mime default thunar.desktop inode/directory
+    xdg-mime default lf.desktop inode/directory
     xdg-mime default sxiv.desktop image/jpeg
     xdg-mime default sxiv.desktop image/png
     xdg-mime default sxiv.desktop image/gif    # todo: sxiv -a for anim
@@ -230,7 +231,6 @@ while [ "$1" != "" ]; do
 done
 
 # find the current location of this script
-
 SCRIPT_DIR=`dirname ${BASH_SOURCE[0]-$0}`
 DOT_LOC=`cd $SCRIPT_DIR && pwd`
 

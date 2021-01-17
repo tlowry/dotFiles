@@ -5,8 +5,8 @@ wal --theme "$1"
 
 # copy generated vim scheme to dots
 # use colorscheme colors-wal in vimrc to enable
-cp ~/.cache/wal/colors-wal.vim $DOT_LOC/config/vim/colors
+cp ~/.cache/wal/colors-wal.vim $HOME/.vim/colors
 
 # copy xresources & reload
-cp ~/.cache/wal/colors.Xresources $DOT_LOC/config/X11/Xresources
+cp ~/.cache/wal/colors.Xresources $HOME/.Xresources
 xrdb ~/.config/Xresources

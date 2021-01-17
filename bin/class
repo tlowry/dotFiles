@@ -14,6 +14,6 @@ glob VERSION_NO 2.2
 
 echo "GLOBALS $GLOBALS"
 
-cog_loc="$DOT_LOC/bin/lib/cogapp-2.5.1/scripts/cog.py"
-python2 $cog_loc -o $1.h -d $GLOBALS $DOT_LOC/bin/cog_header_template.py
-python2 $cog_loc -o $1.cpp -d $GLOBALS $DOT_LOC/bin/cog_class_template.py
+cog_loc="$HOME/.local/bin/lib/cogapp-2.5.1/scripts/cog.py"
+python2 $cog_loc -o $1.h -d $GLOBALS $HOME/.local/bin/cog_header_template.py
+python2 $cog_loc -o $1.cpp -d $GLOBALS $HOME/.local/bin/cog_class_template.py
