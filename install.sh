@@ -12,7 +12,8 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
     ${DOT_LOC}/config/git/ignore        ${DOT_LOC}/config/shell/shellrc
     ${DOT_LOC}/config/vim/tlowry.vimrc  ${DOT_LOC}/config/input/inputrc
-    ${DOT_LOC}/config/bash/tlowry-common.bashrc
+    ${DOT_LOC}/config/bash/tlowry.bashrc
+    ${DOT_LOC}/config/zsh/tlowry.zshrc
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
 )
@@ -103,8 +104,8 @@ install_base () {
     echo "install base"
 
     # Don't overwrite existing config (create if missing and source)
-    create_and_append ". $XDG_CONFIG_HOME/bash/tlowry-common.bashrc" ~/.bashrc
-    create_and_append ". $XDG_CONFIG_HOME/shell/shellrc" ~/.zshrc
+    create_and_append ". $XDG_CONFIG_HOME/bash/tlowry.bashrc" ~/.bashrc
+    create_and_append ". $XDG_CONFIG_HOME/zsh/tlowry.zshrc" ~/.zshrc
     create_and_append ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include $XDG_CONFIG_HOME/input/inputrc" ~/.inputrc
 
@@ -158,7 +159,7 @@ ul_vim () {
 
 uninstall () {
     echo "uninstall"
-    del_lit_line ". $XDG_CONFIG_HOME/bash/tlowry-common.bashrc" ~/.bashrc
+    del_lit_line ". $XDG_CONFIG_HOME/bash/tlowry.bashrc" ~/.bashrc
     del_lit_line ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
     del_lit_line "\$include $XDG_CONFIG_HOME/config/input/inputrc" ~/.inputrc
     
