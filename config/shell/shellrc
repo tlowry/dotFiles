@@ -42,6 +42,9 @@ alias vg="valgrind --tool=memcheck --leak-check=full -v --log-file=app-vg.pid%p"
 
 alias hig="history | grep -i"
 alias s="sudo"
+alias dl="wget -q"
+alias flib="ldconfig -p | grep -i"
+alias revert="cvs update -C"
 
 # rust stuff
 [ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env
@@ -107,25 +110,3 @@ alias gdb="gdb -nh -x $XDG_CONFIG_HOME/gdb/init"
 alias tmux="tmux -f $XDG_CONFIG_HOME/tmux/tmux.conf"
 [ -z "$BROWSER" ] && export BROWSER="brave"
 [ -z "$TERMINAL" ] && export TERMINAL="alacritty"
-
-# python virtualenv setup 
-ve() {
-    env_name="_venv"
-    if [ "$1" == "2" ]; then 
-        [ -f "$env_name" ] || virtualenv --python=`which python2` "$env_name";
-    else
-        [ -f "$env_name" ] || virtualenv "$env_name";
-    fi
-    source "$env_name"/bin/activate
-}
-
-# fuzzy cd with fzf : github.com/junegunn/fzf/wiki/examples#changing-directory
-fuzz_cd(){ 
-    dir=$(find ${1:-.} -path '*/\.*' -prune -o -type d -print 2> /dev/null | fzf ) && cd "$dir" 
-}
-
-x_reload() {
-    # only run if x open, massive delay & error otherwise
-    [ -z "$DISPLAY" ] || xrdb -merge ~/.config/Xresources
-    return 0
-}
