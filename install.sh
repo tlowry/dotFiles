@@ -11,8 +11,7 @@ MAIN_CONFS=(
     ${DOT_LOC}/config/openbox/rc.xml    ${DOT_LOC}/config/openbox/menu.xml
     ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
     ${DOT_LOC}/config/git/ignore        ${DOT_LOC}/config/shell/shellrc
-    ${DOT_LOC}/config/vim/tlowry.vimrc
-    ${DOT_LOC}/config/input/inputrc
+    ${DOT_LOC}/config/vim/tlowry.vimrc  ${DOT_LOC}/config/input/inputrc
     ${DOT_LOC}/config/bash/tlowry-common.bashrc
     ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
     ${DOT_LOC}/config/wal/colorschemes/dark/grey.json

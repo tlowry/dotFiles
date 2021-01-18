@@ -41,6 +41,8 @@ alias o="xdg-open"
 alias listen="nc -vv -l 0.0.0.0"
 alias vg="valgrind --tool=memcheck --leak-check=full -v --log-file=app-vg.pid%p"
 
+alias hig="history | grep -i"
+
 # rust stuff
 [ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env
 
