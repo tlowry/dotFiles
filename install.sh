@@ -112,6 +112,7 @@ install_base () {
 
     # soft link config to standard location
     [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
+    [ -f ~/.zshrc ] || make_link ${DOT_LOC}/config/zsh/zshrc ~/.zshrc
     make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
     make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
     make_link ${DOT_LOC}/config/vim/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim

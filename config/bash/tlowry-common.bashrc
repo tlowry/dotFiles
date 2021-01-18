@@ -1,4 +1,5 @@
-. ~/.config/shell/shellrc
+CFG_DIR="${XDG_CONFIG_HOME:-$HOME/.config}"
+. "$CFG_DIR"/shell/shellrc
 
 # enable vi mode editing in bash
 set -o vi
