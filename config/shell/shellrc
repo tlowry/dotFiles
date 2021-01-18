@@ -1,4 +1,3 @@
-
 # Annoying mispellings
 alias gamek="gmake"
 alias gamke="gmake"
@@ -42,6 +41,7 @@ alias listen="nc -vv -l 0.0.0.0"
 alias vg="valgrind --tool=memcheck --leak-check=full -v --log-file=app-vg.pid%p"
 
 alias hig="history | grep -i"
+alias s="sudo"
 
 # rust stuff
 [ -f ~/.local/share/cargo/env ] && source ~/.local/share/cargo/env

@@ -36,7 +36,6 @@ ff () {
 }
 export -f ff
 
-alias s="sudo"
 
 dl () {
     wget -q "$1"
