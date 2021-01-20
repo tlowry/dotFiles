@@ -104,10 +104,10 @@ install_base () {
     echo "install base"
 
     # Don't overwrite existing config (create if missing and source)
-    create_and_append ". $XDG_CONFIG_HOME/bash/tlowry.bashrc" ~/.bashrc
-    create_and_append ". $XDG_CONFIG_HOME/zsh/tlowry.zshrc" ~/.zshrc
-    create_and_append ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
-    create_and_append "\$include $XDG_CONFIG_HOME/input/inputrc" ~/.inputrc
+    create_and_append ". \${XDG_CONFIG_HOME:-\$HOME/.config}/bash/tlowry.bashrc" ~/.bashrc
+    create_and_append ". \${XDG_CONFIG_HOME:-\$HOME/.config}/zsh/tlowry.zshrc" ~/.zshrc
+    create_and_append ":so \$XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
+    create_and_append "\$include \$XDG_CONFIG_HOME/input/tlowry.inputrc" ~/.inputrc
 
 
     # soft link config to standard location
@@ -159,9 +159,10 @@ ul_vim () {
 
 uninstall () {
     echo "uninstall"
-    del_lit_line ". $XDG_CONFIG_HOME/bash/tlowry.bashrc" ~/.bashrc
-    del_lit_line ":so $XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
-    del_lit_line "\$include $XDG_CONFIG_HOME/config/input/inputrc" ~/.inputrc
+    del_lit_line ". \${XDG_CONFIG_HOME:-\$HOME/.config}/bash/tlowry.bashrc" ~/.bashrc
+    del_lit_line ". \${XDG_CONFIG_HOME:-\$HOME/.config}/zsh/tlowry.zshrc" ~/.zshrc
+    del_lit_line ":so \$XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
+    del_lit_line "\$include \$XDG_CONFIG_HOME/input/tlowry.inputrc" ~/.inputrc
     
     ul ~/.config/Xresources
 
