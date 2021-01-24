@@ -1,7 +1,6 @@
 #
 # ~/.bash_profile
 #
+[ -L ~/.bg] && wallpaper --zoom ~/.bg
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
-
-export PATH="/home/tlowry/.local/share/cargo/bin:$PATH"
