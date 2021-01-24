@@ -150,7 +150,7 @@ install_base () {
     ln_bin
     ln_apps
 
-    distro=`cat /etc/os-release` ; echo $distro | grep -q "ID_LIKE=arch" && install_arch
+    distro=`cat /etc/os-release` ; echo $distro | grep -q "ID=arch" && install_arch
 }
 
 ul_vim () {
