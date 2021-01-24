@@ -8,15 +8,15 @@ MAIN_CONFS=(
     i3/config               alacritty/alacritty.yml 
     mpv/mpv.conf            wget/wgetrc 
     sxhkd/sxhkdrc           tmux/tmux.conf
-    config/polybar/config   ncmpcpp/config
-    config/cmus/rc          cmus/main.theme
-    qutebrowser/config.py   config/lf/lfrc               
+    polybar/config          ncmpcpp/config
+    cmus/rc                 cmus/main.theme
+    qutebrowser/config.py   lf/lfrc               
     newsboat/config         shell/shellrc   
-    config/openbox/rc.xml   openbox/menu.xml
+    openbox/rc.xml          openbox/menu.xml
     git/config              git/ignore
     bash/tlowry.bashrc      zsh/tlowry.zshrc 
     mpd/mpd.conf            vim/tlowry.vimrc        
-    config/input/tlowry.inputrc
+    input/tlowry.inputrc
     wal/colorschemes/dark/supertango.json
     wal/colorschemes/dark/grey.json
 )
