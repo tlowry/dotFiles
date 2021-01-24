@@ -11,7 +11,6 @@ else
     # there was an @ in str & box comes after
     RUSER=`echo "$1" | awk '{split($0, a, "@"); print a[1] }'`
 fi
-echo "HERE"
-echo "$RUSER@$1"
-#ssh "$RUSER@$1";
+
+ssh "$RUSER@$boxname";
 TERM="$PREVTERM"
