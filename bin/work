@@ -4,5 +4,6 @@ url="https://www.udemy.com/course/python-for-data-science-and-machine-learning-b
 bopts=""
 [ "$BROWSER" == "brave" ] && bopts="--new-window"
 $BROWSER "$bopts" "$url" &
+sleep 0.5 
 alacritty --working-directory="/home/tlowry/dev/ai" -e "bash" &
 alacritty --working-directory="/stor/doc" -e "bash" &

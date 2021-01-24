@@ -77,5 +77,5 @@ super + w
 super + e
     $TERMINAL -e vim -c 'startinsert'
 
-super + ctrl + w
+super + c
     nohup work

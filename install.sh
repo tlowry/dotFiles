@@ -1,27 +1,30 @@
 #!/bin/bash
 
+# find the current location of this script
+SCRIPT_DIR=`dirname ${BASH_SOURCE[0]-$0}`
+DOT_LOC=`cd $SCRIPT_DIR && pwd`
+
 MAIN_CONFS=( 
-    ${DOT_LOC}/config/i3/config         ${DOT_LOC}/config/alacritty/alacritty.yml 
-    ${DOT_LOC}/config/mpv/mpv.conf      ${DOT_LOC}/config/wget/wgetrc 
-    ${DOT_LOC}/config/sxhkd/sxhkdrc     ${DOT_LOC}/config/tmux/tmux.conf
-    ${DOT_LOC}/config/polybar/config    ${DOT_LOC}/config/ncmpcpp/config
-    ${DOT_LOC}/config/cmus/rc           ${DOT_LOC}/config/cmus/main.theme
-    ${DOT_LOC}/config/conky/conky.conf  ${DOT_LOC}/config/qutebrowser/config.py
-    ${DOT_LOC}/config/lf/lfrc           ${DOT_LOC}/config/newsboat/config
-    ${DOT_LOC}/config/openbox/rc.xml    ${DOT_LOC}/config/openbox/menu.xml
-    ${DOT_LOC}/config/mpd/mpd.conf      ${DOT_LOC}/config/git/config
-    ${DOT_LOC}/config/git/ignore        ${DOT_LOC}/config/shell/shellrc
-    ${DOT_LOC}/config/vim/tlowry.vimrc  ${DOT_LOC}/config/input/inputrc
-    ${DOT_LOC}/config/bash/tlowry.bashrc
-    ${DOT_LOC}/config/zsh/tlowry.zshrc
-    ${DOT_LOC}/config/wal/colorschemes/dark/supertango.json
-    ${DOT_LOC}/config/wal/colorschemes/dark/grey.json
+    i3/config               alacritty/alacritty.yml 
+    mpv/mpv.conf            wget/wgetrc 
+    sxhkd/sxhkdrc           tmux/tmux.conf
+    config/polybar/config   ncmpcpp/config
+    config/cmus/rc          cmus/main.theme
+    qutebrowser/config.py   config/lf/lfrc               
+    newsboat/config         shell/shellrc   
+    config/openbox/rc.xml   openbox/menu.xml
+    git/config              git/ignore
+    bash/tlowry.bashrc      zsh/tlowry.zshrc 
+    mpd/mpd.conf            vim/tlowry.vimrc        
+    config/input/tlowry.inputrc
+    wal/colorschemes/dark/supertango.json
+    wal/colorschemes/dark/grey.json
 )
 
 ARCH_CONFS=(
-    ${DOT_LOC}/config/sxhkd/bspwm       ${DOT_LOC}/config/sxhkd/sxhkdrc
-    ${DOT_LOC}/config/bspwm/bspwmrc     ${DOT_LOC}/config/bspwm/noswallow
-    ${DOT_LOC}/config/bspwm/terminals
+    sxhkd/bspwm       sxhkd/sxhkdrc
+    bspwm/bspwmrc     bspwm/noswallow
+    bspwm/terminals
 )
 
 ul () {
@@ -44,7 +47,7 @@ del_lit_line () {
 
 ul_bin () {
     bin_dir="$XDG_BIN_HOME"
-    dots_bin="${DOT_LOC}/bin"
+    dots_bin="$DOT_LOC/bin"
     for file in $bin_dir/*
     do
         readlink -f "$file" | grep -q "$dots_bin" && ul "$file"
@@ -56,18 +59,23 @@ ln_bin () {
     
     bin_dir="$XDG_BIN_HOME"
     mkdir -p "$bin_dir" 2> /dev/null
-    for file in ${DOT_LOC}/bin/*
-    do
-        dest_file="$bin_dir/"`basename $file`
-        make_link "$file" "$dest_file"
-    done
+    
+    if [ `ls -lA $DOT_LOC/bin | wc -l` -gt 3 ]; then
+        for file in $DOT_LOC/bin/*
+        do
+            dest_file="$bin_dir/"`basename $file`
+            make_link "$file" "$dest_file"
+        done
 
-    make_link "${DOT_LOC}"/bin/lib "$bin_dir"/lib
+        make_link "$DOT_LOC"/bin/lib "$bin_dir"/lib
+    else
+        echo "no binaries to link"
+    fi
 }
 
 ul_apps () {
     app_dir="$XDG_DATA_HOME/applications"
-    dot_apps="${DOT_LOC}/share/applications"
+    dot_apps="$DOT_LOC/share/applications"
     for file in $app_dir/*
     do
         [ -L "$file" ] && readlink -f "$file" | grep -q "$dot_apps" && unlink "$file"
@@ -79,12 +87,17 @@ ln_apps () {
 
     app_dir="$XDG_DATA_HOME/applications"
     mkdir -p "$app_dir" 2> /dev/null
-    for file in ${DOT_LOC}/share/applications/*
-    do
-        dest_file="$app_dir/"`basename $file`
-        ul "$dest_file"
-        make_link "$file" "$dest_file"
-    done
+
+    if [ `ls -lA $DOT_LOC/share/applications | wc -l` -gt 3 ]; then
+        for file in $DOT_LOC/share/applications/*
+        do
+            dest_file="$app_dir/"`basename $file`
+            ul "$dest_file"
+            make_link "$file" "$dest_file"
+        done
+    else
+        echo "no applications to link"
+    fi
 }
 
 ln_conf () {
@@ -109,14 +122,13 @@ install_base () {
     create_and_append ":so \$XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
     create_and_append "\$include \$XDG_CONFIG_HOME/input/tlowry.inputrc" ~/.inputrc
 
-
     # soft link config to standard location
-    [ -f ~/.bash_profile ] || make_link ${DOT_LOC}/config/bash/bash_profile ~/.bash_profile
-    [ -f ~/.zshrc ] || make_link ${DOT_LOC}/config/zsh/zshrc ~/.zshrc
-    make_link ${DOT_LOC}/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
-    make_link ${DOT_LOC}/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
-    make_link ${DOT_LOC}/config/vim/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
-    make_link ${DOT_LOC}/config/X11/Xresources ~/.config/Xresources
+    [ -f ~/.bash_profile ] || make_link $DOT_LOC/config/bash/bash_profile ~/.bash_profile
+    [ -f ~/.zshrc ] || make_link $DOT_LOC/config/zsh/zshrc ~/.zshrc
+    make_link $DOT_LOC/config/vim/colors/codedark.vim ~/.vim/colors/codedark.vim
+    make_link $DOT_LOC/config/vim/colors/colors-wal.vim ~/.vim/colors/colors-wal.vim
+    make_link $DOT_LOC/config/vim/autoload/pathogen.vim ~/.vim/autoload/pathogen.vim
+    make_link $DOT_LOC/config/X11/Xresources ~/.config/Xresources
 
     # vim pathogen plugins
     mkdir -p ~/.vim/bundle
@@ -127,12 +139,12 @@ install_base () {
     # link any installed plugins
     for dir in config/vim/bundle/*
     do
-        make_link "${DOT_LOC}/$dir" ~/.vim/bundle/"${dir##*/}"
+        make_link "$DOT_LOC/$dir" ~/.vim/bundle/"${dir##*/}"
     done
     
     # more straightforward directory mapped configs
     for x in ${MAIN_CONFS[@]};do
-        ln_conf "$x"
+        ln_conf "$DOT_LOC/config/$x"
     done
     
     ln_bin
@@ -180,10 +192,10 @@ uninstall () {
 # arch/manjaro specific
 install_arch() {
     echo "install arch"
-    make_link ${DOT_LOC}/config/X11/xinitrc ~/.xinitrc
+    make_link $DOT_LOC/config/X11/xinitrc ~/.xinitrc
 
     for x in ${ARCH_CONFS[@]};do
-        ln_conf "$x"
+        ln_conf "$DOT_LOC/config/$x"
     done
 
     xdg-mime default lf.desktop inode/directory
@@ -232,9 +244,6 @@ while [ "$1" != "" ]; do
     shift
 done
 
-# find the current location of this script
-SCRIPT_DIR=`dirname ${BASH_SOURCE[0]-$0}`
-DOT_LOC=`cd $SCRIPT_DIR && pwd`
 
 . $DOT_LOC/bin/util.sh
 
