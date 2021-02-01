@@ -117,10 +117,10 @@ install_base () {
     echo "install base"
 
     # Don't overwrite existing config (create if missing and source)
-    create_and_append ". \${XDG_CONFIG_HOME:-\$HOME/.config}/bash/tlowry.bashrc" ~/.bashrc
-    create_and_append ". \${XDG_CONFIG_HOME:-\$HOME/.config}/zsh/tlowry.zshrc" ~/.zshrc
-    create_and_append ":so \$XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
-    create_and_append "\$include \$XDG_CONFIG_HOME/input/tlowry.inputrc" ~/.inputrc
+    create_and_append ". $HOME/.config/bash/tlowry.bashrc" ~/.bashrc
+    create_and_append ". $HOME/.config/zsh/tlowry.zshrc" ~/.zshrc
+    create_and_append ":so $HOME/.config/vim/tlowry.vimrc" ~/.vimrc 
+    create_and_append "\$include $HOME/.config/input/tlowry.inputrc" ~/.inputrc
 
     # soft link config to standard location
     [ -f ~/.bash_profile ] || make_link $DOT_LOC/config/bash/bash_profile ~/.bash_profile
@@ -171,10 +171,10 @@ ul_vim () {
 
 uninstall () {
     echo "uninstall"
-    del_lit_line ". \${XDG_CONFIG_HOME:-\$HOME/.config}/bash/tlowry.bashrc" ~/.bashrc
-    del_lit_line ". \${XDG_CONFIG_HOME:-\$HOME/.config}/zsh/tlowry.zshrc" ~/.zshrc
-    del_lit_line ":so \$XDG_CONFIG_HOME/vim/tlowry.vimrc" ~/.vimrc 
-    del_lit_line "\$include \$XDG_CONFIG_HOME/input/tlowry.inputrc" ~/.inputrc
+    del_lit_line ". $HOME/.config/bash/tlowry.bashrc" ~/.bashrc
+    del_lit_line ". $HOME/.config/zsh/tlowry.zshrc" ~/.zshrc
+    del_lit_line ":so $HOME/.config/vim/tlowry.vimrc" ~/.vimrc 
+    del_lit_line "\$include $HOME/input/tlowry.inputrc" ~/.inputrc
     
     ul ~/.config/Xresources
 
@@ -247,16 +247,20 @@ done
 
 . $DOT_LOC/bin/util.sh
 
-[ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config
-[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
+# sudo/su workaround
+if [[ "$USER" != "root" ]] && echo "$XDG_CONFIG_HOME" | grep -q "root"
+	then
+	export XDG_CONFIG_HOME=~/.config
+	[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
 
-[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
-[ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
+	export XDG_DATA_HOME="$HOME/.local/share"
+	[ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
 
-[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
-[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
+	export XDG_CACHE_HOME="$HOME/.cache"
+	[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
 
-[ -z "$XDG_BIN_HOME" ] && export XDG_BIN_HOME="$HOME/.local/bin"
-[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
+	export XDG_BIN_HOME="$HOME/.local/bin"
+	[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
+fi
 
 if [ -z "$REMOVE" ]; then install_base ; else uninstall ; fi
