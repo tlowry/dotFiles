@@ -46,18 +46,18 @@ del_lit_line () {
 }
 
 ul_bin () {
-    bin_dir="$XDG_BIN_HOME"
+    bin_dir="$HOME/.local/bin"
     dots_bin="$DOT_LOC/bin"
     for file in $bin_dir/*
     do
-        readlink -f "$file" | grep -q "$dots_bin" && ul "$file"
+        readlink -f "$file" | grep -q "$dots_bin" && ul "$bin_dir/$file"
     done
 }
 
 # make user scripts available system wide
 ln_bin () {
     
-    bin_dir="$XDG_BIN_HOME"
+    bin_dir="$HOME/.local/bin"
     mkdir -p "$bin_dir" 2> /dev/null
     
     if [ `ls -lA $DOT_LOC/bin | wc -l` -gt 3 ]; then
