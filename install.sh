@@ -249,18 +249,21 @@ done
 
 # sudo/su workaround
 if [[ "$USER" != "root" ]] && echo "$XDG_CONFIG_HOME" | grep -q "root"
-	then
+then
 	export XDG_CONFIG_HOME=~/.config
-	[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
-
 	export XDG_DATA_HOME="$HOME/.local/share"
-	[ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
-
 	export XDG_CACHE_HOME="$HOME/.cache"
-	[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
-
 	export XDG_BIN_HOME="$HOME/.local/bin"
-	[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
+else
+    [ -z "$XDG_CONFIG_HOME" ] && export XDG_CONFIG_HOME=~/.config
+	[ -z "$XDG_DATA_HOME" ] && export XDG_DATA_HOME="$HOME/.local/share"
+	[ -z "$XDG_CACHE_HOME" ] && export XDG_CACHE_HOME="$HOME/.cache"
+	[ -z "$XDG_BIN_HOME" ] && export XDG_BIN_HOME="$HOME/.local/bin"
 fi
+
+[ -d "$XDG_CONFIG_HOME" ] || mkdir -p "$XDG_CONFIG_HOME"
+[ -d "$XDG_DATA_HOME/applications" ] || mkdir -p "$XDG_DATA_HOME/applications"
+[ -d "$XDG_CACHE_HOME" ] || mkdir -p "$XDG_CACHE_HOME"
+[ -d "$XDG_BIN_HOME" ] || mkdir -p "$XDG_BIN_HOME"
 
 if [ -z "$REMOVE" ]; then install_base ; else uninstall ; fi
